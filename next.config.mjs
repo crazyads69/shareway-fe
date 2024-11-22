@@ -1,5 +1,14 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+    // Rewrites are used to map an incoming request path to a different destination path.
+    async rewrites() {
+        return [
+            {
+                source: "/",
+                destination: "/admin",
+            },
+        ];
+    },
     webpack: (config) => {
         config.module.rules.push({
             test: /\.node$/,
@@ -10,6 +19,14 @@ const nextConfig = {
     },
     images: {
         domains: ["localhost"],
+        remotePatterns: [
+            {
+                protocol: "http",
+                hostname: "localhost",
+                port: "",
+                pathname: "**",
+            },
+        ],
     },
     reactStrictMode: false,
     eslint: {
@@ -21,6 +38,12 @@ const nextConfig = {
     experimental: {
         turbo: {
             resolveExtensions: [".mdx", ".tsx", ".ts", ".jsx", ".js", ".mjs", ".json"],
+            rules: {
+                "*.svg": {
+                    loaders: ["@svgr/webpack"],
+                    as: "*.js",
+                },
+            },
         },
     },
 };
