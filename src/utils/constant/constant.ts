@@ -1,42 +1,57 @@
 /* eslint-disable import/prefer-default-export */
-// Define path for all the routes
+import { Home, Users, Car, CreditCard, UserCog, Settings, LogIn, MapPin } from "lucide-react";
 
 export const ROUTES = {
-    HOME: "/admin",
-    LOGIN: "/login",
+    HOME: {
+        path: "/admin",
+        name: "Trang chủ",
+        icon: Home,
+    },
+    LOGIN: {
+        path: "/login",
+        name: "Đăng nhập",
+        icon: LogIn,
+    },
 
     // User Management
-    USERS: "/admin/users",
-    // USER_DETAILS: "/admin/users/:id",
-    // USER_VERIFICATION: "/admin/users/verification",
+    USERS: {
+        path: "/admin/users",
+        name: "Người dùng",
+        icon: Users,
+    },
 
     // Ride Management
-    RIDES: "/admin/rides",
-    // RIDE_DETAILS: "/admin/rides/:id",
+    RIDES: {
+        path: "/admin/rides",
+        name: "Chuyến đi",
+        icon: MapPin,
+    },
 
     // Vehicle Management
-    VEHICLES: "/admin/vehicles",
-    // VEHICLE_DETAILS: "/admin/vehicles/:id",
-    // VEHICLE_APPROVAL: "/admin/vehicles/approval",
+    VEHICLES: {
+        path: "/admin/vehicles",
+        name: "Phương tiện",
+        icon: Car,
+    },
 
     // Payment Management
-    PAYMENTS: "/admin/payments",
-    // PAYMENT_DETAILS: "/admin/payments/:id",
-
-    // // Report and Complaint Management
-    // REPORTS: "/admin/reports",
-    // REPORT_DETAILS: "/admin/reports/:id",
-
-    // // Statistics and Analytics
-    // STATISTICS: "/admin/statistics",
-    // CUSTOM_REPORTS: "/admin/reports/custom",
+    PAYMENTS: {
+        path: "/admin/payments",
+        name: "Thanh toán",
+        icon: CreditCard,
+    },
 
     // Admin Account Management
-    ADMIN_ACCOUNTS: "/admin/accounts",
-    // ADMIN_ACCOUNT_DETAILS: "/admin/accounts/:id",
+    ADMIN_ACCOUNTS: {
+        path: "/admin/accounts",
+        name: "Tài khoản",
+        icon: UserCog,
+    },
 
     // System Configuration
-    SETTINGS: "/admin/settings",
-    // SYSTEM_PARAMETERS: "/admin/settings/parameters",
-    // VEHICLE_TYPES: "/admin/settings/vehicle-types",
+    SETTINGS: {
+        path: "/admin/settings",
+        name: "Cài đặt",
+        icon: Settings,
+    },
 };

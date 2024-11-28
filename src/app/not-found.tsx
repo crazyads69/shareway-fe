@@ -15,7 +15,7 @@ export default function NotFound() {
             <div className="flex min-h-screen w-full items-center justify-center bg-slate-100 p-4">
                 {/* Logo top left */}
                 <div className="absolute left-8 top-8">
-                    <Link href="/">
+                    <Link href="/admin">
                         <Image alt="Logo" className="" height={200} src="/logo.svg" width={200} />
                     </Link>
                 </div>
@@ -38,7 +38,7 @@ export default function NotFound() {
                         />
                         <Button
                             className="w-full bg-blue-500 text-white hover:bg-blue-600"
-                            onClick={() => router.push("/")}
+                            onClick={() => router.push("/admin")}
                         >
                             Quay lại trang chủ
                         </Button>
