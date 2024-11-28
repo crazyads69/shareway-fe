@@ -5,6 +5,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 
 import ReduxProvider from "@/redux/provider/provider";
+import AuthProvider from "@/redux/provider/auth-provider/auth-provider";
 
 const inter = Inter({ subsets: ["latin"], display: "swap" });
 
@@ -24,7 +25,9 @@ export default function RootLayout({
     return (
         <html lang="vi">
             <body className={inter.className}>
-                <ReduxProvider>{children}</ReduxProvider>
+                <ReduxProvider>
+                    <AuthProvider>{children}</AuthProvider>
+                </ReduxProvider>
             </body>
         </html>
     );

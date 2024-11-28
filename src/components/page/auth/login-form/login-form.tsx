@@ -2,10 +2,10 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Link, User, LoaderCircle, Lock } from "lucide-react";
 import { useForm } from "react-hook-form";
-import { z } from "zod";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
+import { useDispatch } from "react-redux";
 
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -18,56 +18,26 @@ import {
     FormLabel,
     FormMessage,
 } from "@/components/ui/form";
-import { Toaster } from "@/components/ui/toaster";
-import { useToast } from "@/hooks/use-toast";
-import { loginSchema } from "@/schemas/login";
-import axiosClient from "@/utils/axios-client/axios-client";
+import { LoginInput, LoginInputSchema } from "@/models/auth-model";
+import PostLogin from "@/api/auth/post-login";
 
 export default function LoginForm() {
     const [isLoading, setIsLoading] = useState(false);
 
-    const { toast } = useToast();
-    const form = useForm<z.infer<typeof loginSchema>>({
-        resolver: zodResolver(loginSchema),
+    const form = useForm<LoginInput>({
+        resolver: zodResolver(LoginInputSchema),
         defaultValues: {
             username: "",
             password: "",
         },
     });
+
+    const dispatch = useDispatch();
+
     const router = useRouter();
 
-    const onSubmit = async (data: z.infer<typeof loginSchema>) => {
-        setIsLoading(true);
-        try {
-            const response = await axiosClient.post("/admin/auth/login", {
-                username: data.username,
-                password: data.password,
-            });
-
-            console.log(response.data);
-
-            if (response.data.success) {
-                localStorage.setItem("ACCESS_TOKEN", response.data.token);
-                router.push("/admin/dashboard");
-            } else if (response.data.message_vi) {
-                toast({
-                    title: "Lỗi đăng nhập",
-                    description: response.data.message_vi,
-                    variant: "destructive",
-                });
-            } else {
-                throw new Error("Lỗi không xác định");
-            }
-        } catch (error) {
-            console.error("Lỗi đăng nhập:", error);
-            toast({
-                title: "Lỗi đăng nhập",
-                description: "Đã xảy ra lỗi không mong muốn. Vui lòng thử lại.",
-                variant: "destructive",
-            });
-        } finally {
-            setIsLoading(false);
-        }
+    const onSubmit = async (data: LoginInput) => {
+        await PostLogin(data, dispatch, setIsLoading, router);
     };
 
     return (
@@ -80,12 +50,6 @@ export default function LoginForm() {
             </div>
             <Card className="w-full max-w-md border-2 bg-white">
                 <CardHeader className="space-y-4">
-                    {/* <div className="mb-6 flex justify-center">
-                        <div className="flex items-center gap-2">
-                            <Lock className="text-primary h-8 w-8" />
-                            <span className="text-2xl font-bold">Admin Portal</span>
-                        </div>
-                    </div> */}
                     <CardTitle className="select-none text-center text-2xl font-bold">
                         Đăng nhập
                     </CardTitle>
@@ -159,7 +123,6 @@ export default function LoginForm() {
                     </Form>
                 </CardContent>
             </Card>
-            <Toaster />
 
             {/* Footer */}
             <div className="absolute bottom-8 left-8">
