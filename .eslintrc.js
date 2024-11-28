@@ -135,7 +135,7 @@ module.exports = {
         "no-shadow": "off",
         "react/require-default-props": "off",
         "react/jsx-no-useless-fragment": "warn",
-        "react/jsx-props-no-spreading": "off",
+        "react/jsx-props-no-spreading": "warn",
     },
     settings: {
         "import/resolver": {

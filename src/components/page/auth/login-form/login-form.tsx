@@ -1,22 +1,31 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Link, User, LoaderCircle, Lock } from "lucide-react";
-import { useState } from "react";
-import { useForm, Form } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import { z } from "zod";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
+import { useState } from "react";
 
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from "@/components/ui/card";
-import { FormField, FormItem, FormLabel, FormControl, FormMessage } from "@/components/ui/form";
+import {
+    Form,
+    FormControl,
+    FormField,
+    FormItem,
+    FormLabel,
+    FormMessage,
+} from "@/components/ui/form";
 import { Toaster } from "@/components/ui/toaster";
 import { useToast } from "@/hooks/use-toast";
 import { loginSchema } from "@/schemas/login";
+import axiosClient from "@/utils/axios-client/axios-client";
 
 export default function LoginForm() {
     const [isLoading, setIsLoading] = useState(false);
-    const [loginError, setLoginError] = useState<string | null>(null);
+
     const { toast } = useToast();
     const form = useForm<z.infer<typeof loginSchema>>({
         resolver: zodResolver(loginSchema),
@@ -25,54 +34,35 @@ export default function LoginForm() {
             password: "",
         },
     });
-
-    // Simulated login function - replace with actual authentication
-    const simulateLogin = async (credentials: z.infer<typeof loginSchema>) => {
-        // Simulate network request
-        // eslint-disable-next-line no-promise-executor-return
-        await new Promise((resolve) => setTimeout(resolve, 1000));
-
-        // Example validation logic
-        if (credentials.username === "admin" && credentials.password === "password") {
-            return { success: true };
-        }
-
-        return {
-            success: false,
-            error: "Invalid username or password",
-        };
-    };
+    const router = useRouter();
 
     const onSubmit = async (data: z.infer<typeof loginSchema>) => {
         setIsLoading(true);
-        setLoginError(null);
-
         try {
-            // Simulated login logic - replace with actual authentication
-            const response = await simulateLogin(data);
+            const response = await axiosClient.post("/admin/auth/login", {
+                username: data.username,
+                password: data.password,
+            });
 
-            if (response.success) {
+            console.log(response.data);
+
+            if (response.data.success) {
+                localStorage.setItem("ACCESS_TOKEN", response.data.token);
+                router.push("/admin/dashboard");
+            } else if (response.data.message_vi) {
                 toast({
-                    title: "Login Successful",
-                    description: "Redirecting to dashboard...",
-                    variant: "default",
-                });
-                // Redirect logic would go here
-                // router.push('/dashboard')
-            } else {
-                setLoginError(response.error || "Login failed. Please try again.");
-                toast({
-                    title: "Login Error",
-                    description: response.error || "An unexpected error occurred",
+                    title: "Lỗi đăng nhập",
+                    description: response.data.message_vi,
                     variant: "destructive",
                 });
+            } else {
+                throw new Error("Lỗi không xác định");
             }
         } catch (error) {
-            console.error("Login error:", error);
-            setLoginError("An unexpected error occurred. Please try again.");
+            console.error("Lỗi đăng nhập:", error);
             toast({
-                title: "Login Error",
-                description: "An unexpected error occurred. Please try again.",
+                title: "Lỗi đăng nhập",
+                description: "Đã xảy ra lỗi không mong muốn. Vui lòng thử lại.",
                 variant: "destructive",
             });
         } finally {
@@ -152,12 +142,6 @@ export default function LoginForm() {
                                         </FormItem>
                                     )}
                                 />
-
-                                {loginError && (
-                                    <div className="mb-4 rounded-md border border-red-200 bg-red-50 p-3 text-sm text-red-800">
-                                        {loginError}
-                                    </div>
-                                )}
 
                                 <Button
                                     className="text-md w-full bg-blue-500 text-white hover:bg-blue-600"
