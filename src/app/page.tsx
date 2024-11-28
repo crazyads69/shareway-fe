@@ -1,5 +1,11 @@
-import { cn } from "@/lib/utils";
+"use client";
 
-export default function Home() {
-    return <div className={cn("bg-blue-500", "text-white", "p-4")}>Hello, world!</div>;
+import { useRouter } from "next/navigation";
+
+export default function Page() {
+    const router = useRouter();
+
+    router.replace("/admin");
+
+    return null;
 }

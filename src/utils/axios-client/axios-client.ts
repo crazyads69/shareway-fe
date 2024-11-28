@@ -44,8 +44,10 @@ axiosClient.interceptors.response.use(
             // Handle unauthorized access (401 Unauthorized)
             if (error.response.status === 401) {
                 localStorage.removeItem("ACCESS_TOKEN");
-                // Optionally, redirect to login page or refresh token
-                window.location.href = "/login";
+                localStorage.removeItem("ADMIN");
+                // TODO: Unauthorized access if use this will make the page reload multiple times
+                // // Optionally, redirect to login page or refresh token
+                // window.location.href = "/login";
             }
         }
 

@@ -11,7 +11,7 @@ interface LoadingProps {
 }
 
 export default function FullPageLoading({
-    size = 24,
+    size = 48,
     text = "Đang tải dữ liệu...",
     className,
     textClassName,
@@ -19,7 +19,7 @@ export default function FullPageLoading({
     return (
         <div
             className={cn(
-                "flex min-h-[100px] w-full flex-col items-center justify-center gap-2",
+                "flex min-h-screen w-full flex-col items-center justify-center gap-2 bg-slate-100",
                 className,
             )}
         >
@@ -27,7 +27,7 @@ export default function FullPageLoading({
             <div className="absolute left-8 top-8">
                 <Image alt="Logo" className="" height={200} src="/logo.svg" width={200} />
             </div>
-            <Loader2 aria-label="Loading" className="text-primary animate-spin" size={size} />
+            <Loader2 aria-label="Loading" className="animate-spin text-blue-500" size={size} />
             {text && <p className={cn("text-muted-foreground text-sm", textClassName)}>{text}</p>}
         </div>
     );
