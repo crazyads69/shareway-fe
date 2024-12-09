@@ -25,7 +25,7 @@ export default function FullPageLoading({
         >
             {/* Logo top left */}
             <div className="absolute left-8 top-8">
-                <Image alt="Logo" className="" height={200} src="/logo.svg" width={200} />
+                <Image alt="Logo" className="" height={200} src="/shareway.svg" width={200} />
             </div>
             <Loader2 aria-label="Loading" className="animate-spin text-blue-500" size={size} />
             {text && <p className={cn("text-muted-foreground text-sm", textClassName)}>{text}</p>}

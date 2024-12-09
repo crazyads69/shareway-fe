@@ -48,7 +48,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
                             alt="Logo"
                             className="h-8 w-auto"
                             height={32}
-                            src="/logo.svg"
+                            src="/shareway.svg"
                             width={32}
                         />
                     </div>

@@ -16,7 +16,7 @@ export default function NotFound() {
                 {/* Logo top left */}
                 <div className="absolute left-8 top-8">
                     <Link href="/admin">
-                        <Image alt="Logo" className="" height={200} src="/logo.svg" width={200} />
+                        <Image alt="Logo" height={200} src="/shareway.svg" width={200} />
                     </Link>
                 </div>
                 <Card className="w-full max-w-md border-2 bg-white">
