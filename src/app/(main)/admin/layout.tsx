@@ -54,42 +54,43 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
                     </div>
                     <DropdownMenu>
                         <DropdownMenuTrigger asChild>
-                            <div className="flex cursor-pointer items-center space-x-4 rounded-md border-2 px-2 py-1">
+                            <div className="flex cursor-pointer items-center space-x-4 rounded-md border-2 px-4 py-1 transition-colors hover:bg-gray-100">
                                 <Avatar>
                                     <AvatarImage
+                                        alt="Admin Avatar"
                                         src={`https://api.multiavatar.com/${admin?.admin_info.admin_id}.png`}
                                     />
                                     <AvatarFallback>AD</AvatarFallback>
                                 </Avatar>
                                 <div className="flex flex-col">
-                                    <span className="text-sm font-semibold">
+                                    <span className="select-none text-sm font-semibold">
                                         {admin?.admin_info.username || "Admin"}
                                     </span>
-                                    <span className="text-muted-foreground text-xs">
+                                    <span className="select-none text-xs text-gray-500">
                                         {admin?.admin_info.full_name || "Admin tối cao"}
                                     </span>
                                 </div>
                             </div>
                         </DropdownMenuTrigger>
-                        <DropdownMenuContent align="center" className="w-56">
-                            <DropdownMenuLabel className="p-4 font-normal">
+                        <DropdownMenuContent align="end" className="mt-2 w-56 border bg-white p-2">
+                            <DropdownMenuLabel className="px-2 py-1.5 text-sm font-normal">
                                 <div className="flex flex-col space-y-1">
-                                    <p className="text-sm font-medium leading-none">
+                                    <p className="select-none font-medium">
                                         {admin?.admin_info.username || "Admin"}
                                     </p>
-                                    <p className="text-muted-foreground text-xs leading-none">
+                                    <p className="select-none text-xs text-gray-500">
                                         {admin?.admin_info.full_name || "Admin tối cao"}
                                     </p>
                                 </div>
                             </DropdownMenuLabel>
-                            <DropdownMenuSeparator />
-                            <DropdownMenuItem>
+                            <DropdownMenuSeparator className="my-1 border" />
+                            <DropdownMenuItem className="flex cursor-pointer flex-row items-center px-2 py-1.5 hover:bg-gray-100 hover:outline-none">
                                 <User className="mr-2 h-4 w-4" />
-                                <span>Profile</span>
+                                <span className="select-none">Profile</span>
                             </DropdownMenuItem>
-                            <DropdownMenuItem>
+                            <DropdownMenuItem className="flex cursor-pointer flex-row items-center px-2 py-1.5 hover:bg-gray-100 hover:outline-none">
                                 <LogOut className="mr-2 h-4 w-4" />
-                                <span>Log out</span>
+                                <span className="select-none">Log out</span>
                             </DropdownMenuItem>
                         </DropdownMenuContent>
                     </DropdownMenu>
@@ -117,7 +118,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
                         <span className="select-none text-sm text-gray-500">© 2024 ShareWay</span>
                     </div>
                 </nav>
-                <div className="ml-64">{children}</div>
+                <div className="ml-52 mr-6 min-h-screen w-full">{children}</div>
             </main>
         </div>
     );

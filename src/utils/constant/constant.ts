@@ -55,3 +55,24 @@ export const ROUTES = {
         icon: Settings,
     },
 };
+
+const FILTER_DASHBOARD_OPTIONS = {
+    ALL_TIME: {
+        value: "all_time",
+        label: "Tất cả",
+    },
+    LAST_WEEK: {
+        value: "last_week",
+        label: "Tuần trước",
+    },
+    LAST_MONTH: {
+        value: "last_month",
+        label: "Tháng trước",
+    },
+    CUSTOM: {
+        value: "custom",
+        label: "Tùy chỉnh",
+    },
+};
+
+export const DASHBOARD_FILTER_OPTIONS = Object.values(FILTER_DASHBOARD_OPTIONS);
