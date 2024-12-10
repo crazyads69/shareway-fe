@@ -118,7 +118,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
                         <span className="select-none text-sm text-gray-500">© 2024 ShareWay</span>
                     </div>
                 </nav>
-                <div className="ml-52 mr-6 min-h-screen w-full">{children}</div>
+                <div className="ml-52 mr-8 min-h-screen w-full">{children}</div>
             </main>
         </div>
     );

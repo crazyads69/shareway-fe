@@ -11,10 +11,10 @@ export default function GeneralDashboardResult() {
     if (isLoadingGeneralDashboard || !generalDashboard) {
         return (
             <div className="mt-4 flex w-full flex-row space-x-8 p-4">
-                <Skeleton className="h-56 w-96 rounded-xl bg-slate-200" />
-                <Skeleton className="h-56 w-96 rounded-xl bg-slate-200" />
-                <Skeleton className="h-56 w-96 rounded-xl bg-slate-200" />
-                <Skeleton className="h-56 w-96 rounded-xl bg-slate-200" />=
+                <Skeleton className="h-48 w-72 rounded-xl bg-slate-200" />
+                <Skeleton className="h-48 w-72 rounded-xl bg-slate-200" />
+                <Skeleton className="h-48 w-72 rounded-xl bg-slate-200" />
+                <Skeleton className="h-48 w-72 rounded-xl bg-slate-200" />=
             </div>
         );
     }
@@ -22,7 +22,7 @@ export default function GeneralDashboardResult() {
     return (
         <div className="flex w-full flex-col items-center justify-between">
             {/* Dashboard Cards */}
-            <div className="mt-4 flex w-full flex-row items-center justify-between space-x-8 p-4">
+            <div className="mb-4 flex w-full flex-row items-center justify-between">
                 {/* Total User Card */}
                 <DashboardCard
                     change={generalDashboard.user_change}

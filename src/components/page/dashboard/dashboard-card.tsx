@@ -26,10 +26,10 @@ function DashboardCard({
           : "text-[#1F2937]";
 
     return (
-        <Card className="flex h-56 w-96 flex-col items-center justify-start rounded-xl bg-white p-2">
+        <Card className="flex h-48 w-72 flex-col items-center justify-start rounded-xl bg-white p-2">
             <CardHeader className="flex w-full flex-row items-center justify-between">
                 <div className="flex flex-col items-start justify-center space-y-8">
-                    <h1 className="select-none text-xl font-medium text-gray-600">{title}</h1>
+                    <h1 className="select-none text-lg font-medium text-gray-600">{title}</h1>
                     <h1 className="select-none text-2xl font-bold text-gray-800">{value}</h1>
                 </div>
                 <Image alt={title} className="select-none" height={64} src={iconSrc} width={64} />
@@ -40,16 +40,16 @@ function DashboardCard({
                         <Image
                             alt={isPositiveChange ? "trending up" : "trending down"}
                             className="select-none"
-                            height={48}
+                            height={32}
                             src={isPositiveChange ? "/trend_up.svg" : "/trend_down.svg"}
-                            width={48}
+                            width={32}
                         />
                     )}
-                    <h1 className="select-none text-lg font-medium text-gray-800">{changeText}</h1>
-                    <h1 className={`select-none text-lg font-medium ${changeColorClass}`}>
+                    <h1 className="text-md select-none font-medium text-gray-800">{changeText}</h1>
+                    <h1 className={`text-md select-none font-medium ${changeColorClass}`}>
                         {Math.abs(change)}%
                     </h1>
-                    <h1 className="select-none text-lg font-medium text-gray-800">
+                    <h1 className="text-md select-none font-medium text-gray-800">
                         so với tháng trước
                     </h1>
                 </div>
