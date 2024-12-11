@@ -42,7 +42,7 @@ export default function GeneralDashboardResult() {
                     change={generalDashboard.transaction_change}
                     changeType="transaction"
                     iconSrc="/total_transaction.svg" // You might want to change this to a ride-specific icon
-                    title="Tổng lợi nhuận"
+                    title="Tổng giao dịch"
                     value={generalDashboard.total_transactions}
                 />
                 <DashboardCard

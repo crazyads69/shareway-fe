@@ -1,5 +1,5 @@
 /* eslint-disable import/prefer-default-export */
-import { Home, Users, Car, CreditCard, UserCog, Settings, LogIn, MapPin } from "lucide-react";
+import { Home, Users, Car, CreditCard, LogIn, MapPin } from "lucide-react";
 
 export const ROUTES = {
     HOME: {
@@ -37,23 +37,23 @@ export const ROUTES = {
     // Payment Management
     PAYMENTS: {
         path: "/admin/payments",
-        name: "Thanh toán",
+        name: "Giao dịch",
         icon: CreditCard,
     },
 
-    // Admin Account Management
-    ADMIN_ACCOUNTS: {
-        path: "/admin/accounts",
-        name: "Tài khoản",
-        icon: UserCog,
-    },
+    // // Admin Account Management
+    // ADMIN_ACCOUNTS: {
+    //     path: "/admin/accounts",
+    //     name: "Tài khoản",
+    //     icon: UserCog,
+    // },
 
-    // System Configuration
-    SETTINGS: {
-        path: "/admin/settings",
-        name: "Cài đặt",
-        icon: Settings,
-    },
+    // // System Configuration
+    // SETTINGS: {
+    //     path: "/admin/settings",
+    //     name: "Cài đặt",
+    //     icon: Settings,
+    // },
 };
 
 const FILTER_DASHBOARD_OPTIONS = {
