@@ -35,8 +35,8 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
         ROUTES.RIDES,
         ROUTES.VEHICLES,
         ROUTES.PAYMENTS,
-        ROUTES.ADMIN_ACCOUNTS,
-        ROUTES.SETTINGS,
+        // ROUTES.ADMIN_ACCOUNTS,
+        // ROUTES.SETTINGS,
     ];
 
     return (
