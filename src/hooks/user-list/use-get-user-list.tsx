@@ -59,7 +59,18 @@ export default function useGetUserList() {
             );
 
             if (response.data.success) {
-                dispatch(fetchUserListSuccess(response.data.data));
+                // Duplicate data to 10 times to test pagination response.data.data.users
+                const duplicatedData = {
+                    ...response.data,
+                    data: {
+                        ...response.data.data,
+                        users: response.data.data.users.flatMap((user) =>
+                            Array.from({ length: 3 }, () => user),
+                        ),
+                    },
+                };
+
+                dispatch(fetchUserListSuccess(duplicatedData.data));
             } else {
                 throw new Error(response.data.message_vi || "Lỗi không xác định");
             }

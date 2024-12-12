@@ -2,6 +2,7 @@
 
 "use client";
 
+import ReactPaginate from "react-paginate";
 import { useDispatch, useSelector } from "react-redux";
 import { CalendarIcon, Filter } from "lucide-react";
 import { format } from "date-fns";
@@ -16,6 +17,8 @@ import useGetUserList from "@/hooks/user-list/use-get-user-list";
 import { Card, CardDescription } from "@/components/ui/card";
 import { clearUserListFilter, setUserListFilter } from "@/redux/slice/user-slice";
 import { Input } from "@/components/ui/input";
+import { UserTable } from "@/components/page/user/user-table";
+import { userColumns } from "@/components/page/user/user-columns";
 
 export default function UserPage() {
     const { isLoadingUserList, userList, getUserList } = useGetUserList();
@@ -83,7 +86,7 @@ export default function UserPage() {
                                     )}
                                 </Button>
                             </PopoverTrigger>
-                            <PopoverContent align="start" className="w-auto p-0">
+                            <PopoverContent align="start" className="z-[400] w-auto p-0">
                                 <Calendar
                                     initialFocus
                                     className="w-auto rounded-lg border bg-white"
@@ -118,7 +121,7 @@ export default function UserPage() {
                                     Trạng thái
                                 </Button>
                             </PopoverTrigger>
-                            <PopoverContent className="w-fit rounded-lg border bg-white p-4">
+                            <PopoverContent className="z-[400] w-fit rounded-lg border bg-white p-4">
                                 <div className="flex flex-col space-y-4 p-2">
                                     <h1 className="text-lg font-semibold">Trạng thái tài khoản</h1>
                                     <div className="flex w-full flex-row items-center space-x-3">
@@ -243,6 +246,44 @@ export default function UserPage() {
                     )}
                 </CardDescription>
             </Card>
+            <div className="mt-4 flex w-full flex-col items-center justify-center space-y-4">
+                <UserTable columns={userColumns} data={userList?.users ?? []} />
+            </div>
+            {/* Pagination */}
+            <div className="mb-4 mt-4 flex w-full flex-row items-center justify-between space-x-4">
+                <h1 className="select-none text-sm font-semibold">
+                    Hiển thị {userList?.users.length} trong tổng số {userList?.total_users} kết quả
+                </h1>
+
+                {/* <Pagination /> */}
+                <div className="flex w-fit flex-row">
+                    <ReactPaginate
+                        disableInitialCallback
+                        activeClassName="select-none w-[2.125rem] h-[2.125rem] py-[0.5rem] rounded-md font-sans text-[#FFFFFF] bg-blue-500 flex-col flex items-center justify-center"
+                        breakClassName=" select-none w-[2.125rem] h-[2.125rem] rounded-md px-[0.75rem] py-[0.5rem] border font-sans text-[#637381] flex flex-col  items-center justify-center border-[#DFE4EA]"
+                        breakLabel="..."
+                        containerClassName="flex flex-row items-center justify-center bg-white border border-[#DFE4EA] rounded-[0.625rem] px-[0.75rem] py-[0.75rem] gap-x-[0.5rem] gap-y-[0.5rem]"
+                        initialPage={1}
+                        marginPagesDisplayed={1}
+                        nextClassName="hover:bg-gray-200 select-none w-[2.125rem] h-[2.125rem] rounded-md px-[0.5rem] py-[0.5rem] border font-sans text-[#637381] flex flex-col items-center justify-center border-[#DFE4EA]"
+                        nextLabel=">"
+                        pageClassName="hover:bg-gray-200 select-none w-[2.125rem] h-[2.125rem] rounded-md px-[0.75rem] py-[0.5rem] border font-sans text-[#637381] flex flex-col items-center justify-center border-[#DFE4EA]"
+                        pageCount={userList?.total_pages ?? 0}
+                        pageRangeDisplayed={3}
+                        previousClassName="hover:bg-gray-200 select-none w-[2.125rem] h-[2.125rem] rounded-md px-[0.5rem] py-[0.5rem] border font-sans text-[#637381] flex flex-col items-center justify-center border-[#DFE4EA]"
+                        previousLabel="<"
+                        renderOnZeroPageCount={null}
+                        onPageChange={({ selected }) => {
+                            dispatch(
+                                setUserListFilter({
+                                    ...userListFilter,
+                                    page: selected + 1,
+                                }),
+                            );
+                        }}
+                    />
+                </div>
+            </div>
         </div>
     );
 }
