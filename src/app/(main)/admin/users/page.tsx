@@ -54,30 +54,30 @@ export default function UserPage() {
         }
     }, [date]);
 
-    // Render loading skeleton when fetching data
-    if (isLoadingUserList || !userList) {
-        return (
-            <div className="mt-4 flex min-h-screen w-full flex-col items-center justify-start">
-                <h1 className="select-none self-start p-4 text-2xl font-bold">
-                    Danh sách người dùng
-                </h1>
-                <Skeleton className="mt-4 h-20 w-[45%] self-start bg-slate-200 p-4" />
-                <div className="mt-4 flex w-full flex-col items-center justify-center">
-                    {/* Render 10 skeleton rows */}
-                    {[...Array(10)].map((_, index) => (
-                        <Skeleton
-                            key={crypto.randomUUID()}
-                            className="mt-1 h-16 w-full self-start bg-slate-200 p-4"
-                        />
-                    ))}
-                </div>
-                <div className="mb-4 mt-4 flex w-full flex-row items-center justify-between space-x-4">
-                    <Skeleton className="h-12 w-48 bg-slate-200 p-4" />
-                    <Skeleton className="h-12 w-36 bg-slate-200 p-4" />
-                </div>
-            </div>
-        );
-    }
+    // // Render loading skeleton when fetching data
+    // if (isLoadingUserList || !userList) {
+    //     return (
+    //         <div className="mt-4 flex min-h-screen w-full flex-col items-center justify-start">
+    //             <h1 className="select-none self-start p-4 text-2xl font-bold">
+    //                 Danh sách người dùng
+    //             </h1>
+    //             <Skeleton className="mt-4 h-20 w-[45%] self-start bg-slate-200 p-4" />
+    //             <div className="mt-4 flex w-full flex-col items-center justify-center">
+    //                 {/* Render 10 skeleton rows */}
+    //                 {[...Array(10)].map((_, index) => (
+    //                     <Skeleton
+    //                         key={crypto.randomUUID()}
+    //                         className="mt-1 h-16 w-full self-start bg-slate-200 p-4"
+    //                     />
+    //                 ))}
+    //             </div>
+    //             <div className="mb-4 mt-4 flex w-full flex-row items-center justify-between space-x-4">
+    //                 <Skeleton className="h-12 w-48 bg-slate-200 p-4" />
+    //                 <Skeleton className="h-12 w-36 bg-slate-200 p-4" />
+    //             </div>
+    //         </div>
+    //     );
+    // }
 
     return (
         <div className="flex min-h-screen w-full flex-col items-center justify-start">
@@ -224,26 +224,6 @@ export default function UserPage() {
                     <div className="h-12 border border-r" />
                     {/* Search */}
                     <div className="flex flex-row items-center space-x-2">
-                        {/* <Input
-                            className="w-60"
-                            placeholder="Tìm kiếm theo tên"
-                            type="text"
-                            value={userListFilter.search_full_name}
-                            onChange={(e) => {
-                                const { value } = e.target;
-
-                                const timeoutId = setTimeout(() => {
-                                    dispatch(
-                                        setUserListFilter({
-                                            ...userListFilter,
-                                            search_full_name: value,
-                                        }),
-                                    );
-                                }, 500);
-
-                                () => clearTimeout(timeoutId);
-                            }}
-                        /> */}
                         <Input
                             className="w-60"
                             placeholder="Tìm kiếm theo tên"
@@ -279,43 +259,61 @@ export default function UserPage() {
                     )}
                 </CardDescription>
             </Card>
-            {userList && (
-                <div className="mt-4 flex w-full flex-col items-center justify-center space-y-4">
-                    <UserTable columns={userColumns} data={userList?.users} />
-                </div>
+            {isLoadingUserList || !userList ? (
+                <>
+                    <div className="mt-4 flex w-full flex-col items-center justify-center">
+                        {/* Render 10 skeleton rows */}
+                        {[...Array(9)].map((_, index) => (
+                            <Skeleton
+                                key={crypto.randomUUID()}
+                                className="mt-1 h-16 w-full self-start bg-slate-200 p-4"
+                            />
+                        ))}
+                    </div>
+                    <div className="mb-4 mt-4 flex w-full flex-row items-center justify-between space-x-4">
+                        <Skeleton className="h-12 w-48 bg-slate-200 p-4" />
+                        <Skeleton className="h-12 w-36 bg-slate-200 p-4" />
+                    </div>
+                </>
+            ) : (
+                <>
+                    <div className="mt-4 flex w-full flex-col items-center justify-center space-y-4">
+                        <UserTable columns={userColumns} data={userList?.users} />
+                    </div>
+                    <div className="mb-4 mt-4 flex w-full flex-row items-center justify-between space-x-4">
+                        <h1 className="select-none text-sm font-semibold">
+                            Hiển thị {userList?.users.length} trong tổng số {userList?.total_users}{" "}
+                            kết quả
+                        </h1>
+                        <div className="flex w-fit flex-row">
+                            <ReactPaginate
+                                disableInitialCallback
+                                activeClassName="select-none w-[2.125rem] h-[2.125rem] py-[0.5rem] rounded-md font-sans text-[#FFFFFF] bg-blue-500 flex-col flex items-center justify-center"
+                                breakClassName=" select-none w-[2.125rem] h-[2.125rem] rounded-md px-[0.75rem] py-[0.5rem] border font-sans text-[#637381] flex flex-col  items-center justify-center border-[#DFE4EA]"
+                                breakLabel="..."
+                                containerClassName="flex flex-row items-center justify-center bg-white border border-[#DFE4EA] rounded-[0.625rem] px-[0.75rem] py-[0.75rem] gap-x-[0.5rem] gap-y-[0.5rem]"
+                                marginPagesDisplayed={1}
+                                nextClassName="hover:bg-gray-200 select-none w-[2.125rem] h-[2.125rem] rounded-md px-[0.5rem] py-[0.5rem] border font-sans text-[#637381] flex flex-col items-center justify-center border-[#DFE4EA]"
+                                nextLabel=">"
+                                pageClassName="hover:bg-gray-200 select-none w-[2.125rem] h-[2.125rem] rounded-md px-[0.75rem] py-[0.5rem] border font-sans text-[#637381] flex flex-col items-center justify-center border-[#DFE4EA]"
+                                pageCount={userList.total_pages}
+                                pageRangeDisplayed={3}
+                                previousClassName="hover:bg-gray-200 select-none w-[2.125rem] h-[2.125rem] rounded-md px-[0.5rem] py-[0.5rem] border font-sans text-[#637381] flex flex-col items-center justify-center border-[#DFE4EA]"
+                                previousLabel="<"
+                                renderOnZeroPageCount={null}
+                                onPageChange={({ selected }) => {
+                                    dispatch(
+                                        setUserListFilter({
+                                            ...userListFilter,
+                                            page: selected + 1,
+                                        }),
+                                    );
+                                }}
+                            />
+                        </div>
+                    </div>
+                </>
             )}
-            {/* Pagination */}
-            <div className="mb-4 mt-4 flex w-full flex-row items-center justify-between space-x-4">
-                <h1 className="select-none text-sm font-semibold">
-                    Hiển thị {userList?.users.length} trong tổng số {userList?.total_users} kết quả
-                </h1>
-                <div className="flex w-fit flex-row">
-                    <ReactPaginate
-                        disableInitialCallback
-                        activeClassName="select-none w-[2.125rem] h-[2.125rem] py-[0.5rem] rounded-md font-sans text-[#FFFFFF] bg-blue-500 flex-col flex items-center justify-center"
-                        breakClassName=" select-none w-[2.125rem] h-[2.125rem] rounded-md px-[0.75rem] py-[0.5rem] border font-sans text-[#637381] flex flex-col  items-center justify-center border-[#DFE4EA]"
-                        breakLabel="..."
-                        containerClassName="flex flex-row items-center justify-center bg-white border border-[#DFE4EA] rounded-[0.625rem] px-[0.75rem] py-[0.75rem] gap-x-[0.5rem] gap-y-[0.5rem]"
-                        marginPagesDisplayed={1}
-                        nextClassName="hover:bg-gray-200 select-none w-[2.125rem] h-[2.125rem] rounded-md px-[0.5rem] py-[0.5rem] border font-sans text-[#637381] flex flex-col items-center justify-center border-[#DFE4EA]"
-                        nextLabel=">"
-                        pageClassName="hover:bg-gray-200 select-none w-[2.125rem] h-[2.125rem] rounded-md px-[0.75rem] py-[0.5rem] border font-sans text-[#637381] flex flex-col items-center justify-center border-[#DFE4EA]"
-                        pageCount={userList.total_pages}
-                        pageRangeDisplayed={3}
-                        previousClassName="hover:bg-gray-200 select-none w-[2.125rem] h-[2.125rem] rounded-md px-[0.5rem] py-[0.5rem] border font-sans text-[#637381] flex flex-col items-center justify-center border-[#DFE4EA]"
-                        previousLabel="<"
-                        renderOnZeroPageCount={null}
-                        onPageChange={({ selected }) => {
-                            dispatch(
-                                setUserListFilter({
-                                    ...userListFilter,
-                                    page: selected + 1,
-                                }),
-                            );
-                        }}
-                    />
-                </div>
-            </div>
         </div>
     );
 }
