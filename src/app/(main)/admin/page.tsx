@@ -13,7 +13,7 @@ import VehicleDashboard from "@/components/page/dashboard/vehicle-dashboard";
 export default function AdminPage() {
     return (
         <div className="flex min-h-screen w-full flex-col items-center justify-start">
-            <h1 className="self-start p-4 text-2xl font-bold">Dashboard</h1>
+            <h1 className="self-start p-4 text-2xl font-bold">Tổng quan</h1>
             <GeneralDashboardResult />
             <div className="w-full space-y-4">
                 <UserDashboard />
