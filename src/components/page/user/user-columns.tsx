@@ -6,7 +6,7 @@ import { ColumnDef } from "@tanstack/react-table";
 
 import { UserDetail } from "@/models/user-list";
 
-import { UserDetailsDialog } from "./user-diaglog";
+import { UserDetailsDialog } from "./user-dialog";
 
 export const userColumns: ColumnDef<UserDetail>[] = [
     {
@@ -15,7 +15,11 @@ export const userColumns: ColumnDef<UserDetail>[] = [
             return <div className="select-none text-center text-base font-semibold">ID</div>;
         },
         cell: ({ row }) => {
-            return <div className="select-none">{(row.getValue("id") as string).slice(0, 8)}</div>;
+            return (
+                <div className="select-none text-center">
+                    {(row.getValue("id") as string).slice(0, 8)}
+                </div>
+            );
         },
     },
     {

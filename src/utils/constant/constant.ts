@@ -75,4 +75,56 @@ const FILTER_DASHBOARD_OPTIONS = {
     },
 };
 
+const FILTER_RIDE_STATUS_OPTIONS = {
+    scheduled: {
+        value: "scheduled",
+        label: "Đã lên lịch",
+    },
+    ongoing: {
+        value: "ongoing",
+        label: "Đang diễn ra",
+    },
+    completed: {
+        value: "completed",
+        label: "Đã hoàn thành",
+    },
+    cancelled: {
+        value: "cancelled",
+        label: "Đã hủy",
+    },
+};
+
+const FILTER_TRANSACTION_STATUS_OPTIONS = {
+    // pending, completed, refunded
+    pending: {
+        value: "pending",
+        label: "Chờ xử lý",
+    },
+    completed: {
+        value: "completed",
+        label: "Đã hoàn thành",
+    },
+    refunded: {
+        value: "refunded",
+        label: "Đã hoàn tiền",
+    },
+};
+
+const FILTER_TRANSACTION_PAYMENT_METHOD_OPTIONS = {
+    // momo, cash
+    momo: {
+        value: "momo",
+        label: "Momo",
+    },
+    cash: {
+        value: "cash",
+        label: "Tiền mặt",
+    },
+};
+
 export const DASHBOARD_FILTER_OPTIONS = Object.values(FILTER_DASHBOARD_OPTIONS);
+export const RIDE_STATUS_FILTER_OPTIONS = Object.values(FILTER_RIDE_STATUS_OPTIONS);
+export const TRANSACTION_STATUS_FILTER_OPTIONS = Object.values(FILTER_TRANSACTION_STATUS_OPTIONS);
+export const TRANSACTION_PAYMENT_METHOD_FILTER_OPTIONS = Object.values(
+    FILTER_TRANSACTION_PAYMENT_METHOD_OPTIONS,
+);
