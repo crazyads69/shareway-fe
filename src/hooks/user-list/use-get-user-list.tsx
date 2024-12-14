@@ -80,7 +80,23 @@ export default function useGetUserList() {
 
     // Call API to get user list when component mounted
     useEffect(() => {
-        getUserList(userListFilter);
+        // Handle whenever have filter change (except page change) then reset page to 1
+        if (
+            userListFilter.start_date !== "" ||
+            userListFilter.end_date !== "" ||
+            userListFilter.is_activated !== undefined ||
+            userListFilter.search_full_name !== "" ||
+            userListFilter.is_verified !== undefined
+        ) {
+            // Reset page to 1
+            getUserList({
+                ...userListFilter,
+                page: 1,
+            });
+        } else {
+            // Get user list with current filter
+            getUserList(userListFilter);
+        }
     }, [
         userListFilter.page,
         userListFilter.limit,

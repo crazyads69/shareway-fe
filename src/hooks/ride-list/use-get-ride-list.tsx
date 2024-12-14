@@ -93,7 +93,24 @@ export default function useGetRideList() {
 
     // Call API to get ride list when component mounted
     useEffect(() => {
-        getRideList(rideListFilter);
+        // Handle whenever have filter change (except page change) then reset page to 1
+        if (
+            rideListFilter.search_full_name !== "" ||
+            rideListFilter.search_route !== "" ||
+            rideListFilter.search_vehicle !== "" ||
+            rideListFilter.start_date_time !== "" ||
+            rideListFilter.end_date_time !== "" ||
+            (rideListFilter.ride_status && rideListFilter.ride_status.length > 0)
+        ) {
+            // Reset page to 1
+            getRideList({
+                ...rideListFilter,
+                page: 1,
+            });
+        } else {
+            // Get ride list with current filter
+            getRideList(rideListFilter);
+        }
     }, [
         rideListFilter.page,
         rideListFilter.limit,
