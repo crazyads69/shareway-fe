@@ -115,9 +115,12 @@ export const rideColumns: ColumnDef<RideDetail>[] = [
         },
 
         cell: ({ row }) => {
+            // Format the amount to vnd
             const fare = row.getValue("fare") as number;
-            // Convert to VND
-            const formattedFare = fare.toLocaleString("vi-VN");
+            const formattedFare = new Intl.NumberFormat("vi-VN", {
+                style: "currency",
+                currency: "VND",
+            }).format(fare);
 
             return <div className="select-none text-center">{formattedFare}</div>;
         },

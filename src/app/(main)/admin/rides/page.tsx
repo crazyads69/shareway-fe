@@ -10,6 +10,7 @@ import { Filter, CalendarIcon } from "lucide-react";
 import { useDispatch, useSelector } from "react-redux";
 import ReactPaginate from "react-paginate";
 
+import { Separator } from "@/components/ui/separator";
 import { Calendar } from "@/components/ui/calendar";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
@@ -53,18 +54,18 @@ export default function RidePage() {
         );
     }, [debouncedSearchFullName, debouncedSearchRoute, debouncedSearchVehicle]);
 
-    useEffect(() => {
-        // Update filter when date range is selected
-        if (date?.from && date?.to) {
-            dispatch(
-                setRideListFilter({
-                    ...rideListFilter,
-                    start_date_time: format(date.from, "yyyy-MM-dd"),
-                    end_date_time: format(date.to, "yyyy-MM-dd"),
-                }),
-            );
-        }
-    }, [date]);
+    // useEffect(() => {
+    //     // Update filter when date range is selected
+    //     if (date?.from && date?.to) {
+    //         dispatch(
+    //             setRideListFilter({
+    //                 ...rideListFilter,
+    //                 start_date_time: format(date.from, "yyyy-MM-dd"),
+    //                 end_date_time: format(date.to, "yyyy-MM-dd"),
+    //             }),
+    //         );
+    //     }
+    // }, [date]);
 
     return (
         <div className="flex min-h-screen w-full flex-col items-center justify-start">
@@ -107,10 +108,13 @@ export default function RidePage() {
                                     )}
                                 </Button>
                             </PopoverTrigger>
-                            <PopoverContent align="start" className="z-[400] w-auto p-0">
+                            <PopoverContent
+                                align="start"
+                                className="z-[400] w-auto rounded-lg border bg-white p-0"
+                            >
                                 <Calendar
                                     initialFocus
-                                    className="w-auto rounded-lg border bg-white"
+                                    className="w-auto"
                                     defaultMonth={date?.from}
                                     mode="range"
                                     modifiers={{
@@ -131,6 +135,64 @@ export default function RidePage() {
                                     showOutsideDays={false}
                                     onSelect={setDate}
                                 />
+                                {/* Apply button */}
+                                <Separator className="bg-slate-300" />
+                                <div className="flex flex-row items-center space-x-4 p-4">
+                                    <Button
+                                        className="bg-blue-500 text-base font-semibold text-white"
+                                        variant="default"
+                                        onClick={() => {
+                                            if (date?.from && date?.to) {
+                                                dispatch(
+                                                    setRideListFilter({
+                                                        ...rideListFilter,
+                                                        start_date_time: format(
+                                                            date.from,
+                                                            "yyyy-MM-dd",
+                                                        ),
+                                                        end_date_time: format(
+                                                            date.to,
+                                                            "yyyy-MM-dd",
+                                                        ),
+                                                    }),
+                                                );
+                                                // Close popover
+                                                const popoverTrigger =
+                                                    document.getElementById("date");
+
+                                                if (popoverTrigger instanceof HTMLElement) {
+                                                    popoverTrigger.click();
+                                                }
+                                            }
+                                        }}
+                                    >
+                                        Áp dụng
+                                    </Button>
+                                    {/* Reset button */}
+                                    <Button
+                                        className="bg-red-500 text-base font-semibold text-white"
+                                        variant="default"
+                                        onClick={() => {
+                                            setDate(undefined);
+                                            // Reset filter
+                                            dispatch(
+                                                setRideListFilter({
+                                                    ...rideListFilter,
+                                                    start_date_time: undefined,
+                                                    end_date_time: undefined,
+                                                }),
+                                            );
+                                            // Close popover
+                                            const popoverTrigger = document.getElementById("date");
+
+                                            if (popoverTrigger instanceof HTMLElement) {
+                                                popoverTrigger.click();
+                                            }
+                                        }}
+                                    >
+                                        Hủy
+                                    </Button>
+                                </div>
                             </PopoverContent>
                         </Popover>
                     </div>

@@ -1,5 +1,15 @@
 /* eslint-disable import/prefer-default-export */
-import { MoreHorizontal, MapPin, Clock, DollarSign, Car, User, Phone, Star } from "lucide-react";
+import {
+    MoreHorizontal,
+    MapPin,
+    Clock,
+    DollarSign,
+    Car,
+    User,
+    Phone,
+    Star,
+    Tag,
+} from "lucide-react";
 
 import { Separator } from "@/components/ui/separator";
 import {
@@ -78,7 +88,7 @@ export function RideDetailsDialog({ ride }: { ride: RideDetail }) {
                     <MoreHorizontal className="h-4 w-4" />
                 </Button>
             </DialogTrigger>
-            <DialogContent className="border bg-white p-6 sm:max-w-3xl">
+            <DialogContent className="border bg-white p-6 sm:max-w-4xl">
                 <DialogHeader>
                     <DialogTitle className="select-none text-2xl font-bold">
                         Chi tiết chuyến đi
@@ -180,9 +190,13 @@ export function RideDetailsDialog({ ride }: { ride: RideDetail }) {
                                     label="Tên xe"
                                     value={ride?.vehicle.name}
                                 />
-                                <InfoItem label="Biển số" value={ride?.vehicle.license_plate} />
                                 <InfoItem
-                                    label="Nhiên liệu tiêu thụ"
+                                    icon={<Tag size={16} />}
+                                    label="Biển số"
+                                    value={ride?.vehicle.license_plate}
+                                />
+                                <InfoItem
+                                    label="Nhiên liệu tiêu thụ (L/100km)"
                                     suffix="L"
                                     value={ride?.vehicle.fuel_consumed.toFixed(2)}
                                 />

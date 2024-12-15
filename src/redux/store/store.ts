@@ -5,6 +5,7 @@ import messageSlice from "../slice/message-slice";
 import userSlice from "../slice/user-slice";
 import rideSlice from "../slice/ride-slice";
 import vehicleSlice from "../slice/vehicle-slice";
+import transactionSlice from "../slice/transaction-slice";
 
 const store = configureStore({
     reducer: {
@@ -12,6 +13,7 @@ const store = configureStore({
         message: messageSlice,
         ride: rideSlice,
         vehicle: vehicleSlice,
+        transaction: transactionSlice,
         user: userSlice,
     },
 });

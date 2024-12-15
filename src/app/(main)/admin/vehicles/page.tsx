@@ -10,6 +10,7 @@ import { Popover, PopoverTrigger, PopoverContent } from "@radix-ui/react-popover
 import { Filter, CalendarIcon } from "lucide-react";
 import ReactPaginate from "react-paginate";
 
+import { Separator } from "@/components/ui/separator";
 import useGetVehicleList from "@/hooks/vehicle-list/use-get-vehicle-list";
 import { RootState } from "@/redux/store/store";
 import useDebounce from "@/hooks/use-debounce/use-debounce";
@@ -66,19 +67,19 @@ export default function VehiclePage() {
         debouncedSearchCavet,
     ]);
 
-    // Handle date filter when selected range date complete
-    useEffect(() => {
-        // Update filter when date range is selected
-        if (date?.from && date?.to) {
-            dispatch(
-                setVehicleListFilter({
-                    ...vehicleListFilter,
-                    start_date: format(date.from, "yyyy-MM-dd"),
-                    end_date: format(date.to, "yyyy-MM-dd"),
-                }),
-            );
-        }
-    }, [date]);
+    // // Handle date filter when selected range date complete
+    // useEffect(() => {
+    //     // Update filter when date range is selected
+    //     if (date?.from && date?.to) {
+    //         dispatch(
+    //             setVehicleListFilter({
+    //                 ...vehicleListFilter,
+    //                 start_date: format(date.from, "yyyy-MM-dd"),
+    //                 end_date: format(date.to, "yyyy-MM-dd"),
+    //             }),
+    //         );
+    //     }
+    // }, [date]);
 
     return (
         <div className="flex min-h-screen w-full flex-col items-center justify-start">
@@ -122,10 +123,13 @@ export default function VehiclePage() {
                                     )}
                                 </Button>
                             </PopoverTrigger>
-                            <PopoverContent align="start" className="z-[400] w-auto p-0">
+                            <PopoverContent
+                                align="start"
+                                className="z-[400] w-auto rounded-lg border bg-white p-0"
+                            >
                                 <Calendar
                                     initialFocus
-                                    className="w-auto rounded-lg border bg-white"
+                                    className="w-auto"
                                     defaultMonth={date?.from}
                                     mode="range"
                                     modifiers={{
@@ -146,6 +150,58 @@ export default function VehiclePage() {
                                     showOutsideDays={false}
                                     onSelect={setDate}
                                 />
+                                {/* Apply button */}
+                                <Separator className="bg-slate-300" />
+                                <div className="flex flex-row items-center space-x-4 p-4">
+                                    <Button
+                                        className="bg-blue-500 text-base font-semibold text-white"
+                                        variant="default"
+                                        onClick={() => {
+                                            if (date?.from && date?.to) {
+                                                dispatch(
+                                                    setVehicleListFilter({
+                                                        ...vehicleListFilter,
+                                                        start_date: format(date.from, "yyyy-MM-dd"),
+                                                        end_date: format(date.to, "yyyy-MM-dd"),
+                                                    }),
+                                                );
+                                                // Close popover
+                                                const popoverTrigger =
+                                                    document.getElementById("date");
+
+                                                if (popoverTrigger instanceof HTMLElement) {
+                                                    popoverTrigger.click();
+                                                }
+                                            }
+                                        }}
+                                    >
+                                        Áp dụng
+                                    </Button>
+                                    {/* Reset button */}
+                                    <Button
+                                        className="bg-red-500 text-base font-semibold text-white"
+                                        variant="default"
+                                        onClick={() => {
+                                            setDate(undefined);
+                                            // Reset filter
+                                            dispatch(
+                                                setVehicleListFilter({
+                                                    ...vehicleListFilter,
+                                                    start_date: undefined,
+                                                    end_date: undefined,
+                                                }),
+                                            );
+                                            // Close popover
+                                            const popoverTrigger = document.getElementById("date");
+
+                                            if (popoverTrigger instanceof HTMLElement) {
+                                                popoverTrigger.click();
+                                            }
+                                        }}
+                                    >
+                                        Hủy
+                                    </Button>
+                                </div>
                             </PopoverContent>
                         </Popover>
                     </div>
