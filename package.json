@@ -29,6 +29,7 @@
         "class-variance-authority": "^0.7.1",
         "clsx": "^2.1.1",
         "date-fns": "^4.1.0",
+        "file-saver": "^2.0.5",
         "glob": "^9.0.0",
         "lodash": "^4.17.21",
         "lucide-react": "^0.468.0",
@@ -48,6 +49,7 @@
     },
     "devDependencies": {
         "@next/eslint-plugin-next": "^14.2.5",
+        "@types/file-saver": "^2.0.7",
         "@types/lodash": "^4.17.13",
         "@types/node": "^20",
         "@types/react": "^19.0.1",

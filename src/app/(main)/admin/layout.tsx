@@ -20,6 +20,8 @@ import { RootState } from "@/redux/store/store";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { ROUTES } from "@/utils/constant/constant";
 import { cn } from "@/lib/utils";
+import Alert from "@/components/global/alert/alert";
+import { AdminProfileDialog } from "@/components/global/admin-profile-dialog/admin-profile-dialog";
 
 type Checked = DropdownMenuCheckboxItemProps["checked"];
 
@@ -84,10 +86,11 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
                                 </div>
                             </DropdownMenuLabel>
                             <DropdownMenuSeparator className="my-1 border" />
-                            <DropdownMenuItem className="flex cursor-pointer flex-row items-center px-2 py-1.5 hover:bg-gray-100 hover:outline-none">
+                            {/* <DropdownMenuItem className="flex cursor-pointer flex-row items-center px-2 py-1.5 hover:bg-gray-100 hover:outline-none">
                                 <User className="mr-2 h-4 w-4" />
                                 <span className="select-none">Profile</span>
-                            </DropdownMenuItem>
+                            </DropdownMenuItem> */}
+                            {admin && <AdminProfileDialog admin={admin.admin_info} />}
                             <DropdownMenuItem className="flex cursor-pointer flex-row items-center px-2 py-1.5 hover:bg-gray-100 hover:outline-none">
                                 <LogOut className="mr-2 h-4 w-4" />
                                 <span className="select-none">Log out</span>
@@ -119,6 +122,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
                     </div>
                 </nav>
                 <div className="ml-52 mr-8 min-h-screen w-full">{children}</div>
+                <Alert />
             </main>
         </div>
     );

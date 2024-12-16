@@ -5,25 +5,22 @@ import { Toaster } from "@/components/ui/toaster";
 import { useToast } from "@/hooks/use-toast";
 import { RootState } from "@/redux/store/store";
 import { clearMessage } from "@/redux/slice/message-slice";
+import { cn } from "@/lib/utils";
 
 export default function Alert() {
     const toastIdRef = useRef<string | null>(null);
-    const timeoutRef = useRef<NodeJS.Timeout | null>(null);
 
     const message = useSelector((state: RootState) => state.message);
     const { toast, dismiss } = useToast();
+
     const dispatch = useDispatch();
 
     useEffect(() => {
         if (message.message) {
-            // Clear any existing timeout
-            if (timeoutRef.current) {
-                clearTimeout(timeoutRef.current);
-            }
-
             // Dismiss any existing toast
             if (toastIdRef.current) {
                 dismiss(toastIdRef.current);
+                dispatch(clearMessage());
             }
 
             // Show new toast
@@ -35,27 +32,29 @@ export default function Alert() {
                         ? "default"
                         : "destructive",
                 duration: 5000,
+                className: cn(
+                    "flex items-center justify-between p-4 rounded-md",
+                    message.message.type === "success"
+                        ? "bg-green-500 text-white"
+                        : message.message.type === "info"
+                          ? "bg-blue-500 text-white"
+                          : "bg-red-500 text-white",
+                ),
             });
 
             toastIdRef.current = id;
 
-            // Set timeout to clear message
-            timeoutRef.current = setTimeout(() => {
+            // Clear message after 5 seconds
+            const timeoutId = setTimeout(() => {
                 dispatch(clearMessage());
-                toastIdRef.current = null;
             }, 5000);
-        }
 
-        // Cleanup function
-        return () => {
-            if (timeoutRef.current) {
-                clearTimeout(timeoutRef.current);
-            }
-            if (toastIdRef.current) {
-                dismiss(toastIdRef.current);
-            }
-        };
-    }, [message.message, toast, dismiss, dispatch]);
+            // Return a function to clear the timeout
+            return () => {
+                clearTimeout(timeoutId);
+            };
+        }
+    }, [message.message]);
 
     return <Toaster />;
 }
