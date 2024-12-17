@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
 import {
@@ -14,7 +14,7 @@ import {
     DropdownMenuTrigger,
 } from "@radix-ui/react-dropdown-menu";
 import { User, LogOut } from "lucide-react";
-import React, { useState } from "react";
+import React, { use, useState } from "react";
 
 import { RootState } from "@/redux/store/store";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
@@ -22,12 +22,16 @@ import { ROUTES } from "@/utils/constant/constant";
 import { cn } from "@/lib/utils";
 import Alert from "@/components/global/alert/alert";
 import { AdminProfileDialog } from "@/components/global/admin-profile-dialog/admin-profile-dialog";
-
+import { Button } from "@/components/ui/button";
+import PostLogout from "@/api/auth/post-logout";
+import { useRouter } from "next/navigation";
 type Checked = DropdownMenuCheckboxItemProps["checked"];
 
 export default function AdminLayout({ children }: { children: React.ReactNode }) {
     const admin = useSelector((state: RootState) => state.auth.admin);
     const pathname = usePathname();
+    const dispatch = useDispatch();
+    const router = useRouter();
 
     const [showStatusBar, setShowStatusBar] = useState<Checked>(true);
 
@@ -40,6 +44,10 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
         // ROUTES.ADMIN_ACCOUNTS,
         // ROUTES.SETTINGS,
     ];
+
+    const handleLogout = async () => {
+        await PostLogout(dispatch, router);
+    };
 
     return (
         <div className="flex min-h-screen flex-col bg-slate-100">
@@ -91,10 +99,14 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
                                 <span className="select-none">Profile</span>
                             </DropdownMenuItem> */}
                             {admin && <AdminProfileDialog admin={admin.admin_info} />}
-                            <DropdownMenuItem className="flex cursor-pointer flex-row items-center px-2 py-1.5 hover:bg-gray-100 hover:outline-none">
+                            <Button
+                                variant="ghost"
+                                className="w-full justify-start px-2 py-1.5 hover:bg-gray-100"
+                                onClick={handleLogout}
+                            >
                                 <LogOut className="mr-2 h-4 w-4" />
-                                <span className="select-none">Log out</span>
-                            </DropdownMenuItem>
+                                <span className="select-none">Đăng xuất</span>
+                            </Button>
                         </DropdownMenuContent>
                     </DropdownMenu>
                 </div>

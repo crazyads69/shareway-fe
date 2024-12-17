@@ -169,7 +169,8 @@ const rideListFilterSchema = z.object({
     start_date_time: z.string().optional(),
     end_date_time: z.string().optional(),
     ride_status: z.array(z.string()).optional(),
-    search_full_name: z.string().optional(),
+    search_driver: z.string().optional(),
+    search_hitcher: z.string().optional(),
     search_route: z.string().optional(),
     search_vehicle: z.string().optional(),
 });

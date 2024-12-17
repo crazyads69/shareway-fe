@@ -6,6 +6,7 @@ import "./globals.css";
 
 import ReduxProvider from "@/redux/provider/provider";
 import AuthProvider from "@/redux/provider/auth-provider/auth-provider";
+import Alert from "@/components/global/alert/alert";
 
 const inter = Inter({ subsets: ["latin"], display: "swap" });
 

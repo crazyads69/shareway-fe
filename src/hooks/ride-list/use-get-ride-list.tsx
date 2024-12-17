@@ -43,9 +43,14 @@ export default function useGetRideList() {
                 query.append("end_date_time", rideListFilter.end_date_time);
             }
 
-            // Add search_full_name to query
-            if (rideListFilter.search_full_name) {
-                query.append("search_full_name", rideListFilter.search_full_name);
+            // Add search_driver to query
+            if (rideListFilter.search_driver) {
+                query.append("search_driver", rideListFilter.search_driver);
+            }
+
+            // Add search_hitcher to query
+            if (rideListFilter.search_hitcher) {
+                query.append("search_hitcher", rideListFilter.search_hitcher);
             }
 
             // Add search_route to query
@@ -95,7 +100,8 @@ export default function useGetRideList() {
     useEffect(() => {
         // Handle whenever have filter change (except page change) then reset page to 1
         if (
-            rideListFilter.search_full_name !== "" ||
+            rideListFilter.search_driver !== "" ||
+            rideListFilter.search_hitcher !== "" ||
             rideListFilter.search_route !== "" ||
             rideListFilter.search_vehicle !== "" ||
             rideListFilter.start_date_time !== "" ||
@@ -116,7 +122,8 @@ export default function useGetRideList() {
         rideListFilter.limit,
         rideListFilter.start_date_time,
         rideListFilter.end_date_time,
-        rideListFilter.search_full_name,
+        rideListFilter.search_driver,
+        rideListFilter.search_hitcher,
         rideListFilter.search_route,
         rideListFilter.search_vehicle,
         rideListFilter.ride_status,

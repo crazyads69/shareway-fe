@@ -19,7 +19,8 @@ const initialState: RideState = {
         limit: 10,
         start_date_time: "",
         end_date_time: "",
-        search_full_name: "",
+        search_driver: "",
+        search_hitcher: "",
         search_route: "",
         search_vehicle: "",
         ride_status: [], // Empty array means all status

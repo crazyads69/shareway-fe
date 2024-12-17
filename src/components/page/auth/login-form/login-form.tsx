@@ -45,9 +45,7 @@ export default function LoginForm() {
         <div className="flex min-h-screen w-full items-center justify-center bg-slate-100 p-4">
             {/* Logo top left */}
             <div className="absolute left-8 top-8">
-                <Link href="/">
-                    <Image alt="Logo" height={200} src="/shareway.svg" width={200} />
-                </Link>
+                <Image alt="Logo" height={200} src="/shareway.svg" width={200} draggable={false} />
             </div>
             <Card className="w-full max-w-md border-2 bg-white">
                 <CardHeader className="space-y-4">
@@ -67,13 +65,15 @@ export default function LoginForm() {
                                     name="username"
                                     render={({ field }) => (
                                         <FormItem>
-                                            <FormLabel>Tên người dùng</FormLabel>
+                                            <FormLabel className="select-none">
+                                                Tên người dùng
+                                            </FormLabel>
                                             <FormControl>
                                                 <div className="relative">
                                                     <User className="text-muted-foreground absolute left-3 top-2.5 h-5 w-5" />
                                                     <Input
                                                         {...field}
-                                                        className="pl-10"
+                                                        className="select-none pl-10"
                                                         disabled={isLoading}
                                                         placeholder="Nhập tên người dùng của bạn"
                                                         type="text"
@@ -90,13 +90,13 @@ export default function LoginForm() {
                                     name="password"
                                     render={({ field }) => (
                                         <FormItem>
-                                            <FormLabel>Mật khẩu</FormLabel>
+                                            <FormLabel className="select-none">Mật khẩu</FormLabel>
                                             <FormControl>
                                                 <div className="relative">
                                                     <Lock className="text-muted-foreground absolute left-3 top-2.5 h-5 w-5" />
                                                     <Input
                                                         {...field}
-                                                        className="pl-10"
+                                                        className="select-none pl-10"
                                                         disabled={isLoading}
                                                         placeholder="Nhập mật khẩu của bạn"
                                                         type="password"

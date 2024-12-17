@@ -344,19 +344,23 @@ export default function UserPage() {
                         <div className="flex w-fit flex-row">
                             <ReactPaginate
                                 disableInitialCallback
-                                activeClassName="select-none w-[2.125rem] h-[2.125rem] py-[0.5rem] rounded-md font-sans text-[#FFFFFF] bg-blue-500 flex-col flex items-center justify-center"
-                                breakClassName=" select-none w-[2.125rem] h-[2.125rem] rounded-md px-[0.75rem] py-[0.5rem] border font-sans text-[#637381] flex flex-col  items-center justify-center border-[#DFE4EA]"
                                 breakLabel="..."
-                                containerClassName="flex flex-row items-center justify-center bg-white border border-[#DFE4EA] rounded-[0.625rem] px-[0.75rem] py-[0.75rem] gap-x-[0.5rem] gap-y-[0.5rem]"
                                 forcePage={userListFilter.page - 1}
                                 marginPagesDisplayed={1}
-                                nextClassName="hover:bg-gray-200 select-none w-[2.125rem] h-[2.125rem] rounded-md px-[0.5rem] py-[0.5rem] border font-sans text-[#637381] flex flex-col items-center justify-center border-[#DFE4EA]"
                                 nextLabel=">"
-                                pageClassName="hover:bg-gray-200 select-none w-[2.125rem] h-[2.125rem] rounded-md px-[0.75rem] py-[0.5rem] border font-sans text-[#637381] flex flex-col items-center justify-center border-[#DFE4EA]"
                                 pageCount={userList.total_pages}
                                 pageRangeDisplayed={3}
-                                previousClassName="hover:bg-gray-200 select-none w-[2.125rem] h-[2.125rem] rounded-md px-[0.5rem] py-[0.5rem] border font-sans text-[#637381] flex flex-col items-center justify-center border-[#DFE4EA]"
                                 previousLabel="<"
+                                containerClassName="flex flex-row items-center justify-center bg-white border border-[#DFE4EA] rounded-[0.625rem] px-[0.75rem] py-[0.75rem] gap-x-[0.5rem] gap-y-[0.5rem]"
+                                activeClassName="select-none w-[2.125rem] h-[2.125rem] py-[0.5rem] rounded-md font-sans text-[#FFFFFF] bg-blue-500 flex-col flex items-center justify-center"
+                                pageLinkClassName="w-full h-full flex items-center justify-center"
+                                previousLinkClassName="w-full h-full flex items-center justify-center"
+                                nextLinkClassName="w-full h-full flex items-center justify-center"
+                                breakLinkClassName="w-full h-full flex items-center justify-center"
+                                pageClassName="hover:bg-gray-200 select-none w-[2.125rem] h-[2.125rem] rounded-md border font-sans text-[#637381] border-[#DFE4EA]"
+                                previousClassName="hover:bg-gray-200 select-none w-[2.125rem] h-[2.125rem] rounded-md border font-sans text-[#637381] border-[#DFE4EA]"
+                                nextClassName="hover:bg-gray-200 select-none w-[2.125rem] h-[2.125rem] rounded-md border font-sans text-[#637381] border-[#DFE4EA]"
+                                breakClassName="select-none w-[2.125rem] h-[2.125rem] rounded-md border font-sans text-[#637381] border-[#DFE4EA]"
                                 renderOnZeroPageCount={null}
                                 onPageChange={({ selected }) => {
                                     dispatch(

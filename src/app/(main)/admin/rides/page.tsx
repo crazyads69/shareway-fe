@@ -29,8 +29,11 @@ export default function RidePage() {
     const { isLoadingRideList, rideList, getRideList } = useGetRideList();
     const [date, setDate] = useState<DateRange | undefined>(undefined);
     const rideListFilter = useSelector((state: RootState) => state.ride.rideListFilter);
-    const [searchFullName, setSearchFullName] = useState<string>(
-        rideListFilter.search_full_name as string,
+    const [searchDriver, setSearchDriver] = useState<string>(
+        rideListFilter.search_driver as string,
+    );
+    const [searchHitcher, setSearchHitcher] = useState<string>(
+        rideListFilter.search_hitcher as string,
     );
     const [searchRoute, setSearchRoute] = useState<string>(rideListFilter.search_route as string);
 
@@ -38,7 +41,8 @@ export default function RidePage() {
         rideListFilter.search_vehicle as string,
     );
     // Debounce for search
-    const debouncedSearchFullName = useDebounce(searchFullName, 500);
+    const debouncedSearchDriver = useDebounce(searchDriver, 500);
+    const debouncedSearchHitcher = useDebounce(searchHitcher, 500);
     const debouncedSearchRoute = useDebounce(searchRoute, 500);
     const debouncedSearchVehicle = useDebounce(searchVehicle, 500);
 
@@ -47,12 +51,18 @@ export default function RidePage() {
         dispatch(
             setRideListFilter({
                 ...rideListFilter,
-                search_full_name: debouncedSearchFullName,
+                search_driver: debouncedSearchDriver,
+                search_hitcher: debouncedSearchHitcher,
                 search_route: debouncedSearchRoute,
                 search_vehicle: debouncedSearchVehicle,
             }),
         );
-    }, [debouncedSearchFullName, debouncedSearchRoute, debouncedSearchVehicle]);
+    }, [
+        debouncedSearchDriver,
+        debouncedSearchHitcher,
+        debouncedSearchRoute,
+        debouncedSearchVehicle,
+    ]);
 
     // useEffect(() => {
     //     // Update filter when date range is selected
@@ -263,10 +273,20 @@ export default function RidePage() {
                     <div className="flex flex-row items-center space-x-2">
                         <Input
                             className="w-60"
-                            placeholder="Tìm kiếm theo tên"
+                            placeholder="Tìm kiếm theo người cho đi nhờ"
                             type="text"
-                            value={searchFullName}
-                            onChange={(e) => setSearchFullName(e.target.value)}
+                            value={searchDriver}
+                            onChange={(e) => setSearchDriver(e.target.value)}
+                        />
+                    </div>
+                    <div className="h-12 border border-r" />
+                    <div className="flex flex-row items-center space-x-2">
+                        <Input
+                            className="w-60"
+                            placeholder="Tìm kiếm theo người đi nhờ"
+                            type="text"
+                            value={searchHitcher}
+                            onChange={(e) => setSearchHitcher(e.target.value)}
                         />
                     </div>
                     <div className="h-12 border border-r" />
@@ -279,7 +299,7 @@ export default function RidePage() {
                             onChange={(e) => setSearchRoute(e.target.value)}
                         />
                     </div>
-                    <div className="h-12 border border-r" />
+                    {/* <div className="h-12 border border-r" />
                     <div className="flex flex-row items-center space-x-2">
                         <Input
                             className="w-60"
@@ -288,12 +308,13 @@ export default function RidePage() {
                             value={searchVehicle}
                             onChange={(e) => setSearchVehicle(e.target.value)}
                         />
-                    </div>
+                    </div> */}
                     {/* Divider */}
                     {/* Reset filter */}
                     {/* Only render when userFilterState change different with inital */}
                     {/* Divider */}
-                    {(rideListFilter.search_full_name !== "" ||
+                    {(rideListFilter.search_driver !== "" ||
+                        rideListFilter.search_hitcher !== "" ||
                         rideListFilter.search_route !== "" ||
                         rideListFilter.search_vehicle !== "" ||
                         rideListFilter.start_date_time !== "" ||
@@ -307,7 +328,8 @@ export default function RidePage() {
                                     variant="ghost"
                                     onClick={() => {
                                         dispatch(clearRideListFilter());
-                                        setSearchFullName("");
+                                        setSearchDriver("");
+                                        setSearchHitcher("");
                                         setSearchRoute("");
                                         setSearchVehicle("");
                                         setDate(undefined);
@@ -349,19 +371,23 @@ export default function RidePage() {
                         <div className="flex w-fit flex-row">
                             <ReactPaginate
                                 disableInitialCallback
-                                activeClassName="select-none w-[2.125rem] h-[2.125rem] py-[0.5rem] rounded-md font-sans text-[#FFFFFF] bg-blue-500 flex-col flex items-center justify-center"
-                                breakClassName=" select-none w-[2.125rem] h-[2.125rem] rounded-md px-[0.75rem] py-[0.5rem] border font-sans text-[#637381] flex flex-col  items-center justify-center border-[#DFE4EA]"
                                 breakLabel="..."
-                                containerClassName="flex flex-row items-center justify-center bg-white border border-[#DFE4EA] rounded-[0.625rem] px-[0.75rem] py-[0.75rem] gap-x-[0.5rem] gap-y-[0.5rem]"
                                 forcePage={rideList.current_page - 1}
                                 marginPagesDisplayed={1}
-                                nextClassName="hover:bg-gray-200 select-none w-[2.125rem] h-[2.125rem] rounded-md px-[0.5rem] py-[0.5rem] border font-sans text-[#637381] flex flex-col items-center justify-center border-[#DFE4EA]"
                                 nextLabel=">"
-                                pageClassName="hover:bg-gray-200 select-none w-[2.125rem] h-[2.125rem] rounded-md px-[0.75rem] py-[0.5rem] border font-sans text-[#637381] flex flex-col items-center justify-center border-[#DFE4EA]"
                                 pageCount={rideList.total_pages}
                                 pageRangeDisplayed={3}
-                                previousClassName="hover:bg-gray-200 select-none w-[2.125rem] h-[2.125rem] rounded-md px-[0.5rem] py-[0.5rem] border font-sans text-[#637381] flex flex-col items-center justify-center border-[#DFE4EA]"
                                 previousLabel="<"
+                                containerClassName="flex flex-row items-center justify-center bg-white border border-[#DFE4EA] rounded-[0.625rem] px-[0.75rem] py-[0.75rem] gap-x-[0.5rem] gap-y-[0.5rem]"
+                                activeClassName="select-none w-[2.125rem] h-[2.125rem] py-[0.5rem] rounded-md font-sans text-[#FFFFFF] bg-blue-500 flex-col flex items-center justify-center"
+                                pageLinkClassName="w-full h-full flex items-center justify-center"
+                                previousLinkClassName="w-full h-full flex items-center justify-center"
+                                nextLinkClassName="w-full h-full flex items-center justify-center"
+                                breakLinkClassName="w-full h-full flex items-center justify-center"
+                                pageClassName="hover:bg-gray-200 select-none w-[2.125rem] h-[2.125rem] rounded-md border font-sans text-[#637381] border-[#DFE4EA]"
+                                previousClassName="hover:bg-gray-200 select-none w-[2.125rem] h-[2.125rem] rounded-md border font-sans text-[#637381] border-[#DFE4EA]"
+                                nextClassName="hover:bg-gray-200 select-none w-[2.125rem] h-[2.125rem] rounded-md border font-sans text-[#637381] border-[#DFE4EA]"
+                                breakClassName="select-none w-[2.125rem] h-[2.125rem] rounded-md border font-sans text-[#637381] border-[#DFE4EA]"
                                 renderOnZeroPageCount={null}
                                 onPageChange={({ selected }) => {
                                     dispatch(

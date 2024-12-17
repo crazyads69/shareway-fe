@@ -26,7 +26,7 @@ import {
 import { Separator } from "@radix-ui/react-dropdown-menu";
 import { ScrollArea } from "@radix-ui/react-scroll-area";
 import { Calendar } from "@/components/ui/calendar";
-import { DollarSign, CreditCard, CalendarIcon, Loader2, X } from "lucide-react";
+import { DollarSign, CreditCard, CalendarIcon, Loader2, X, LoaderCircle } from "lucide-react";
 import { setRideListFilter } from "@/redux/slice/ride-slice";
 import { Popover, PopoverTrigger, PopoverContent } from "@radix-ui/react-popover";
 import { format } from "date-fns";
@@ -172,7 +172,7 @@ export default function AdminPage() {
                                     >
                                         {isLoadReport ? (
                                             <>
-                                                <Loader2 className="mr-2 h-4 w-4 animate-spin bg-white" />
+                                                <LoaderCircle className="mr-2 h-4 w-4 animate-spin bg-white" />
                                                 Đang tải...
                                             </>
                                         ) : (
