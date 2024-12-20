@@ -142,89 +142,392 @@ export default function PaymentPage() {
         <div className="flex min-h-screen w-full flex-col items-center justify-start">
             <h1 className="select-none self-start p-4 text-2xl font-bold">Danh sách giao dịch</h1>
             {/* Filter */}
-            <Card className="mt-4 flex h-fit w-fit flex-row items-center self-start bg-white p-4">
-                <CardDescription className="flex w-full flex-row items-center space-x-4">
+            <Card className="mt-4 flex h-fit w-fit flex-row items-center self-start bg-white p-1 2xl:p-4">
+                <CardDescription className="flex w-full flex-row items-center space-x-2 2xl:space-x-4">
                     {/* Filter icon */}
-                    <div className="flex h-12 w-12 items-center justify-center">
+                    <div className="flex h-12 w-12 items-center justify-center p-2">
                         <Filter size={32} />
                     </div>
                     {/* Filter description */}
-                    <div className="flex flex-col items-center">
+                    <div className="hidden w-full items-center 2xl:flex">
                         <span className="select-none text-base font-semibold">Bộ lọc</span>
                     </div>
                     {/* Divider */}
                     <div className="h-12 border border-r" />
                     {/* Filter button */}
-                    <div className="gap-2">
-                        <Popover>
-                            <PopoverTrigger asChild>
-                                <Button
-                                    className="justify-start text-left font-normal"
-                                    id="date"
-                                    variant="ghost"
-                                >
-                                    <CalendarIcon />
-                                    {date?.from ? (
-                                        date.to ? (
-                                            <>
-                                                {format(date.from, "dd/MM/yyyy")} -{" "}
-                                                {format(date.to, "dd/MM/yyyy")}
-                                            </>
-                                        ) : (
-                                            format(date.from, "dd/MM/yyyy")
-                                        )
-                                    ) : (
-                                        <span className="select-none text-base font-semibold">
-                                            Chọn khoảng ngày
-                                        </span>
-                                    )}
-                                </Button>
-                            </PopoverTrigger>
-                            <PopoverContent
-                                align="start"
-                                className="z-[400] w-auto rounded-lg border bg-white p-0"
+                    <Popover>
+                        <PopoverTrigger asChild>
+                            <Button
+                                className="justify-start p-1 text-left font-normal 2xl:p-2"
+                                id="date"
+                                variant="ghost"
                             >
-                                <Calendar
-                                    initialFocus
-                                    className="w-auto"
-                                    defaultMonth={date?.from}
-                                    mode="range"
-                                    modifiers={{
-                                        selected: (day: Date) =>
-                                            (date?.from != null &&
-                                                day.getTime() === date.from.getTime()) ||
-                                            (date?.to != null &&
-                                                day.getTime() === date.to.getTime()),
+                                <CalendarIcon />
+                                {date?.from ? (
+                                    date.to ? (
+                                        <>
+                                            {format(date.from, "dd/MM/yyyy")} -{" "}
+                                            {format(date.to, "dd/MM/yyyy")}
+                                        </>
+                                    ) : (
+                                        format(date.from, "dd/MM/yyyy")
+                                    )
+                                ) : (
+                                    <span className="select-none text-base font-semibold">
+                                        Chọn khoảng ngày
+                                    </span>
+                                )}
+                            </Button>
+                        </PopoverTrigger>
+                        <PopoverContent
+                            align="start"
+                            className="z-[400] w-auto rounded-lg border bg-white p-0"
+                        >
+                            <Calendar
+                                initialFocus
+                                className="w-auto"
+                                defaultMonth={date?.from}
+                                mode="range"
+                                modifiers={{
+                                    selected: (day: Date) =>
+                                        (date?.from != null &&
+                                            day.getTime() === date.from.getTime()) ||
+                                        (date?.to != null && day.getTime() === date.to.getTime()),
+                                }}
+                                modifiersStyles={{
+                                    selected: {
+                                        backgroundColor: "#3b82f6", // bg-blue-500
+                                        color: "white",
+                                    },
+                                }}
+                                numberOfMonths={2}
+                                selected={date}
+                                showOutsideDays={false}
+                                onSelect={setDate}
+                            />
+                            {/* Apply button */}
+                            <Separator className="bg-slate-300" />
+                            <div className="flex flex-row items-center space-x-4 p-4">
+                                <Button
+                                    className="bg-blue-500 text-base font-semibold text-white"
+                                    variant="default"
+                                    onClick={() => {
+                                        if (date?.from && date?.to) {
+                                            dispatch(
+                                                setTransactionListFilter({
+                                                    ...transactionListFilter,
+                                                    start_date: format(date.from, "yyyy-MM-dd"),
+                                                    end_date: format(date.to, "yyyy-MM-dd"),
+                                                }),
+                                            );
+                                            // Close popover
+                                            const popoverTrigger = document.getElementById("date");
+
+                                            if (popoverTrigger instanceof HTMLElement) {
+                                                popoverTrigger.click();
+                                            }
+                                        }
                                     }}
-                                    modifiersStyles={{
-                                        selected: {
-                                            backgroundColor: "#3b82f6", // bg-blue-500
-                                            color: "white",
-                                        },
+                                >
+                                    Áp dụng
+                                </Button>
+                                {/* Reset button */}
+                                <Button
+                                    className="bg-red-500 text-base font-semibold text-white"
+                                    variant="default"
+                                    onClick={() => {
+                                        setDate(undefined);
+                                        // Reset filter
+                                        dispatch(
+                                            setTransactionListFilter({
+                                                ...transactionListFilter,
+                                                start_date: undefined,
+                                                end_date: undefined,
+                                            }),
+                                        );
+                                        // Close popover
+                                        const popoverTrigger = document.getElementById("date");
+
+                                        if (popoverTrigger instanceof HTMLElement) {
+                                            popoverTrigger.click();
+                                        }
                                     }}
-                                    numberOfMonths={2}
-                                    selected={date}
-                                    showOutsideDays={false}
-                                    onSelect={setDate}
-                                />
+                                >
+                                    Hủy
+                                </Button>
+                            </div>
+                        </PopoverContent>
+                    </Popover>
+                    <div className="h-12 border border-r" />
+                    <Popover>
+                        <PopoverTrigger asChild>
+                            <Button className="p-1 text-base font-semibold 2xl:p-2" variant="ghost">
+                                Trạng thái & Phương thức
+                            </Button>
+                        </PopoverTrigger>
+                        <PopoverContent className="z-[400] w-fit rounded-lg border bg-white p-4">
+                            <div className="flex flex-col space-y-4 p-2">
+                                <h1 className="text-lg font-semibold">Trạng thái giao dịch</h1>
+                                <div className="flex w-full flex-row items-center space-x-3">
+                                    {TRANSACTION_STATUS_FILTER_OPTIONS.map((option) => (
+                                        <Button
+                                            key={option.value}
+                                            className={`w-fit p-2 ${
+                                                transactionListFilter.payment_status?.includes(
+                                                    option.value,
+                                                )
+                                                    ? "bg-blue-500 text-white"
+                                                    : ""
+                                            }`}
+                                            variant="outline"
+                                            onClick={() => {
+                                                if (
+                                                    transactionListFilter.payment_status?.includes(
+                                                        option.value,
+                                                    )
+                                                ) {
+                                                    const newStatus =
+                                                        transactionListFilter.payment_status.filter(
+                                                            (status) => status !== option.value,
+                                                        );
+
+                                                    dispatch(
+                                                        setTransactionListFilter({
+                                                            ...transactionListFilter,
+                                                            payment_status: newStatus,
+                                                        }),
+                                                    );
+                                                } else {
+                                                    dispatch(
+                                                        setTransactionListFilter({
+                                                            ...transactionListFilter,
+                                                            payment_status: [
+                                                                ...(transactionListFilter.payment_status ||
+                                                                    []),
+                                                                option.value,
+                                                            ],
+                                                        }),
+                                                    );
+                                                }
+                                            }}
+                                        >
+                                            {option.label}
+                                        </Button>
+                                    ))}
+                                </div>
+                            </div>
+                            <div className="flex flex-col space-y-4 p-2">
+                                <h1 className="text-lg font-semibold">Phương thức thanh toán</h1>
+                                <div className="flex w-full flex-row items-center space-x-3">
+                                    {TRANSACTION_PAYMENT_METHOD_FILTER_OPTIONS.map((option) => (
+                                        <Button
+                                            key={option.value}
+                                            className={`w-fit p-2 ${
+                                                transactionListFilter.payment_method?.includes(
+                                                    option.value,
+                                                )
+                                                    ? "bg-blue-500 text-white"
+                                                    : ""
+                                            }`}
+                                            variant="outline"
+                                            onClick={() => {
+                                                if (
+                                                    transactionListFilter.payment_method?.includes(
+                                                        option.value,
+                                                    )
+                                                ) {
+                                                    const newPaymentMethod =
+                                                        transactionListFilter.payment_method.filter(
+                                                            (status) => status !== option.value,
+                                                        );
+
+                                                    dispatch(
+                                                        setTransactionListFilter({
+                                                            ...transactionListFilter,
+                                                            payment_method: newPaymentMethod,
+                                                        }),
+                                                    );
+                                                } else {
+                                                    dispatch(
+                                                        setTransactionListFilter({
+                                                            ...transactionListFilter,
+                                                            payment_method: [
+                                                                ...(transactionListFilter.payment_method ||
+                                                                    []),
+                                                                option.value,
+                                                            ],
+                                                        }),
+                                                    );
+                                                }
+                                            }}
+                                        >
+                                            {option.label}
+                                        </Button>
+                                    ))}
+                                </div>
+                            </div>
+                        </PopoverContent>
+                    </Popover>
+                    {/* <div className="h-12 border border-r" />
+                    <Popover>
+                        <PopoverTrigger asChild>
+                            <Button className="text-base font-semibold" variant="ghost">
+                                Phương thức
+                            </Button>
+                        </PopoverTrigger>
+                        <PopoverContent className="z-[400] w-fit rounded-lg border bg-white p-4">
+                            <div className="flex flex-col space-y-4 p-2">
+                                <h1 className="text-lg font-semibold">Phương thức thanh toán</h1>
+                                <div className="flex w-full flex-row items-center space-x-3">
+                                    {TRANSACTION_PAYMENT_METHOD_FILTER_OPTIONS.map((option) => (
+                                        <Button
+                                            key={option.value}
+                                            className={`w-fit p-2 ${
+                                                transactionListFilter.payment_method?.includes(
+                                                    option.value,
+                                                )
+                                                    ? "bg-blue-500 text-white"
+                                                    : ""
+                                            }`}
+                                            variant="outline"
+                                            onClick={() => {
+                                                if (
+                                                    transactionListFilter.payment_method?.includes(
+                                                        option.value,
+                                                    )
+                                                ) {
+                                                    const newPaymentMethod =
+                                                        transactionListFilter.payment_method.filter(
+                                                            (status) => status !== option.value,
+                                                        );
+
+                                                    dispatch(
+                                                        setTransactionListFilter({
+                                                            ...transactionListFilter,
+                                                            payment_method: newPaymentMethod,
+                                                        }),
+                                                    );
+                                                } else {
+                                                    dispatch(
+                                                        setTransactionListFilter({
+                                                            ...transactionListFilter,
+                                                            payment_method: [
+                                                                ...(transactionListFilter.payment_method ||
+                                                                    []),
+                                                                option.value,
+                                                            ],
+                                                        }),
+                                                    );
+                                                }
+                                            }}
+                                        >
+                                            {option.label}
+                                        </Button>
+                                    ))}
+                                </div>
+                            </div>
+                        </PopoverContent>
+                    </Popover> */}
+                    {/* Search */}
+                    <div className="h-12 border border-r" />
+                    <div className="flex flex-row items-center space-x-2">
+                        <Input
+                            className="w-40 2xl:w-60"
+                            placeholder="Tìm theo người gửi"
+                            type="text"
+                            value={searchSender}
+                            onChange={(e) => setSearchSender(e.target.value)}
+                        />
+                    </div>
+                    <div className="h-12 border border-r" />
+                    <div className="flex flex-row items-center space-x-2">
+                        <Input
+                            className="w-44 2xl:w-60"
+                            placeholder="Tìm theo người nhận"
+                            type="text"
+                            value={searchReceiver}
+                            onChange={(e) => setSearchReceiver(e.target.value)}
+                        />
+                    </div>
+                    <div className="h-12 border border-r" />
+                    <Popover>
+                        <PopoverTrigger asChild>
+                            <Button
+                                className="justify-start p-1 text-left font-normal 2xl:p-2"
+                                id="amount"
+                                variant="ghost"
+                            >
+                                <DollarSign />
+                                {amountRange && amountRange.min ? (
+                                    amountRange.max ? (
+                                        <>
+                                            {amountRange.min}đ - {amountRange.max}đ
+                                        </>
+                                    ) : (
+                                        `${amountRange.min}đ trở lên`
+                                    )
+                                ) : (
+                                    <span className="select-none text-base font-semibold">
+                                        Chọn khoảng cước phí
+                                    </span>
+                                )}
+                            </Button>
+                        </PopoverTrigger>
+                        <PopoverContent
+                            align="start"
+                            className="z-[400] w-auto rounded-lg border bg-white p-0"
+                        >
+                            <div className="flex flex-col space-y-4 p-4">
+                                <h1 className="text-lg font-semibold">Khoảng cước phí</h1>
+                                <div className="flex flex-row space-x-2">
+                                    <Input
+                                        className="w-40"
+                                        placeholder="Từ"
+                                        type="text"
+                                        value={amountRange.min}
+                                        onChange={(e) => handleAmountChange("min", e.target.value)}
+                                    />
+                                    <Input
+                                        className="w-40"
+                                        placeholder="Đến"
+                                        type="text"
+                                        value={amountRange.max}
+                                        onChange={(e) => handleAmountChange("max", e.target.value)}
+                                    />
+                                </div>
                                 {/* Apply button */}
-                                <Separator className="bg-slate-300" />
-                                <div className="flex flex-row items-center space-x-4 p-4">
+                                <div className="flex flex-row items-center space-x-4">
                                     <Button
                                         className="bg-blue-500 text-base font-semibold text-white"
                                         variant="default"
                                         onClick={() => {
-                                            if (date?.from && date?.to) {
+                                            const minAmount = parseInt(
+                                                amountRange.min.replace(/\D/g, ""),
+                                                10,
+                                            );
+                                            const maxAmount = parseInt(
+                                                amountRange.max.replace(/\D/g, ""),
+                                                10,
+                                            );
+
+                                            if (
+                                                !Number.isNaN(minAmount) ||
+                                                !Number.isNaN(maxAmount)
+                                            ) {
                                                 dispatch(
                                                     setTransactionListFilter({
                                                         ...transactionListFilter,
-                                                        start_date: format(date.from, "yyyy-MM-dd"),
-                                                        end_date: format(date.to, "yyyy-MM-dd"),
+                                                        min_amount: !Number.isNaN(minAmount)
+                                                            ? minAmount
+                                                            : undefined,
+                                                        max_amount: !Number.isNaN(maxAmount)
+                                                            ? maxAmount
+                                                            : undefined,
                                                     }),
                                                 );
                                                 // Close popover
                                                 const popoverTrigger =
-                                                    document.getElementById("date");
+                                                    document.getElementById("amount");
 
                                                 if (popoverTrigger instanceof HTMLElement) {
                                                     popoverTrigger.click();
@@ -239,17 +542,21 @@ export default function PaymentPage() {
                                         className="bg-red-500 text-base font-semibold text-white"
                                         variant="default"
                                         onClick={() => {
-                                            setDate(undefined);
+                                            setAmountRange({
+                                                min: "",
+                                                max: "",
+                                            });
                                             // Reset filter
                                             dispatch(
                                                 setTransactionListFilter({
                                                     ...transactionListFilter,
-                                                    start_date: undefined,
-                                                    end_date: undefined,
+                                                    min_amount: undefined,
+                                                    max_amount: undefined,
                                                 }),
                                             );
                                             // Close popover
-                                            const popoverTrigger = document.getElementById("date");
+                                            const popoverTrigger =
+                                                document.getElementById("amount");
 
                                             if (popoverTrigger instanceof HTMLElement) {
                                                 popoverTrigger.click();
@@ -259,282 +566,9 @@ export default function PaymentPage() {
                                         Hủy
                                     </Button>
                                 </div>
-                            </PopoverContent>
-                        </Popover>
-                    </div>
-                    <div className="h-12 border border-r" />
-                    <div className="gap-2">
-                        <Popover>
-                            <PopoverTrigger asChild>
-                                <Button className="text-base font-semibold" variant="ghost">
-                                    Trạng thái
-                                </Button>
-                            </PopoverTrigger>
-                            <PopoverContent className="z-[400] w-fit rounded-lg border bg-white p-4">
-                                <div className="flex flex-col space-y-4 p-2">
-                                    <h1 className="text-lg font-semibold">Trạng thái giao dịch</h1>
-                                    <div className="flex w-full flex-row items-center space-x-3">
-                                        {TRANSACTION_STATUS_FILTER_OPTIONS.map((option) => (
-                                            <Button
-                                                key={option.value}
-                                                className={`w-fit p-2 ${
-                                                    transactionListFilter.payment_status?.includes(
-                                                        option.value,
-                                                    )
-                                                        ? "bg-blue-500 text-white"
-                                                        : ""
-                                                }`}
-                                                variant="outline"
-                                                onClick={() => {
-                                                    if (
-                                                        transactionListFilter.payment_status?.includes(
-                                                            option.value,
-                                                        )
-                                                    ) {
-                                                        const newStatus =
-                                                            transactionListFilter.payment_status.filter(
-                                                                (status) => status !== option.value,
-                                                            );
-
-                                                        dispatch(
-                                                            setTransactionListFilter({
-                                                                ...transactionListFilter,
-                                                                payment_status: newStatus,
-                                                            }),
-                                                        );
-                                                    } else {
-                                                        dispatch(
-                                                            setTransactionListFilter({
-                                                                ...transactionListFilter,
-                                                                payment_status: [
-                                                                    ...(transactionListFilter.payment_status ||
-                                                                        []),
-                                                                    option.value,
-                                                                ],
-                                                            }),
-                                                        );
-                                                    }
-                                                }}
-                                            >
-                                                {option.label}
-                                            </Button>
-                                        ))}
-                                    </div>
-                                </div>
-                            </PopoverContent>
-                        </Popover>
-                    </div>
-                    <div className="h-12 border border-r" />
-                    <div className="gap-2">
-                        <Popover>
-                            <PopoverTrigger asChild>
-                                <Button className="text-base font-semibold" variant="ghost">
-                                    Phương thức
-                                </Button>
-                            </PopoverTrigger>
-                            <PopoverContent className="z-[400] w-fit rounded-lg border bg-white p-4">
-                                <div className="flex flex-col space-y-4 p-2">
-                                    <h1 className="text-lg font-semibold">
-                                        Phương thức thanh toán
-                                    </h1>
-                                    <div className="flex w-full flex-row items-center space-x-3">
-                                        {TRANSACTION_PAYMENT_METHOD_FILTER_OPTIONS.map((option) => (
-                                            <Button
-                                                key={option.value}
-                                                className={`w-fit p-2 ${
-                                                    transactionListFilter.payment_method?.includes(
-                                                        option.value,
-                                                    )
-                                                        ? "bg-blue-500 text-white"
-                                                        : ""
-                                                }`}
-                                                variant="outline"
-                                                onClick={() => {
-                                                    if (
-                                                        transactionListFilter.payment_method?.includes(
-                                                            option.value,
-                                                        )
-                                                    ) {
-                                                        const newPaymentMethod =
-                                                            transactionListFilter.payment_method.filter(
-                                                                (status) => status !== option.value,
-                                                            );
-
-                                                        dispatch(
-                                                            setTransactionListFilter({
-                                                                ...transactionListFilter,
-                                                                payment_method: newPaymentMethod,
-                                                            }),
-                                                        );
-                                                    } else {
-                                                        dispatch(
-                                                            setTransactionListFilter({
-                                                                ...transactionListFilter,
-                                                                payment_method: [
-                                                                    ...(transactionListFilter.payment_method ||
-                                                                        []),
-                                                                    option.value,
-                                                                ],
-                                                            }),
-                                                        );
-                                                    }
-                                                }}
-                                            >
-                                                {option.label}
-                                            </Button>
-                                        ))}
-                                    </div>
-                                </div>
-                            </PopoverContent>
-                        </Popover>
-                    </div>
-                    {/* Search */}
-                    <div className="h-12 border border-r" />
-                    <div className="flex flex-row items-center space-x-2">
-                        <Input
-                            className="w-60"
-                            placeholder="Tìm kiếm theo tên người gửi"
-                            type="text"
-                            value={searchSender}
-                            onChange={(e) => setSearchSender(e.target.value)}
-                        />
-                    </div>
-                    <div className="h-12 border border-r" />
-                    <div className="flex flex-row items-center space-x-2">
-                        <Input
-                            className="w-60"
-                            placeholder="Tìm kiếm theo tên người nhận"
-                            type="text"
-                            value={searchReceiver}
-                            onChange={(e) => setSearchReceiver(e.target.value)}
-                        />
-                    </div>
-                    <div className="h-12 border border-r" />
-                    <div className="gap-2">
-                        <Popover>
-                            <PopoverTrigger asChild>
-                                <Button
-                                    className="justify-start text-left font-normal"
-                                    id="amount"
-                                    variant="ghost"
-                                >
-                                    <DollarSign />
-                                    {amountRange && amountRange.min ? (
-                                        amountRange.max ? (
-                                            <>
-                                                {amountRange.min}đ - {amountRange.max}đ
-                                            </>
-                                        ) : (
-                                            `${amountRange.min}đ trở lên`
-                                        )
-                                    ) : (
-                                        <span className="select-none text-base font-semibold">
-                                            Chọn khoảng cước phí
-                                        </span>
-                                    )}
-                                </Button>
-                            </PopoverTrigger>
-                            <PopoverContent
-                                align="start"
-                                className="z-[400] w-auto rounded-lg border bg-white p-0"
-                            >
-                                <div className="flex flex-col space-y-4 p-4">
-                                    <h1 className="text-lg font-semibold">Khoảng cước phí</h1>
-                                    <div className="flex flex-row space-x-2">
-                                        <Input
-                                            className="w-40"
-                                            placeholder="Từ"
-                                            type="text"
-                                            value={amountRange.min}
-                                            onChange={(e) =>
-                                                handleAmountChange("min", e.target.value)
-                                            }
-                                        />
-                                        <Input
-                                            className="w-40"
-                                            placeholder="Đến"
-                                            type="text"
-                                            value={amountRange.max}
-                                            onChange={(e) =>
-                                                handleAmountChange("max", e.target.value)
-                                            }
-                                        />
-                                    </div>
-                                    {/* Apply button */}
-                                    <div className="flex flex-row items-center space-x-4">
-                                        <Button
-                                            className="bg-blue-500 text-base font-semibold text-white"
-                                            variant="default"
-                                            onClick={() => {
-                                                const minAmount = parseInt(
-                                                    amountRange.min.replace(/\D/g, ""),
-                                                    10,
-                                                );
-                                                const maxAmount = parseInt(
-                                                    amountRange.max.replace(/\D/g, ""),
-                                                    10,
-                                                );
-
-                                                if (
-                                                    !Number.isNaN(minAmount) ||
-                                                    !Number.isNaN(maxAmount)
-                                                ) {
-                                                    dispatch(
-                                                        setTransactionListFilter({
-                                                            ...transactionListFilter,
-                                                            min_amount: !Number.isNaN(minAmount)
-                                                                ? minAmount
-                                                                : undefined,
-                                                            max_amount: !Number.isNaN(maxAmount)
-                                                                ? maxAmount
-                                                                : undefined,
-                                                        }),
-                                                    );
-                                                    // Close popover
-                                                    const popoverTrigger =
-                                                        document.getElementById("amount");
-
-                                                    if (popoverTrigger instanceof HTMLElement) {
-                                                        popoverTrigger.click();
-                                                    }
-                                                }
-                                            }}
-                                        >
-                                            Áp dụng
-                                        </Button>
-                                        {/* Reset button */}
-                                        <Button
-                                            className="bg-red-500 text-base font-semibold text-white"
-                                            variant="default"
-                                            onClick={() => {
-                                                setAmountRange({
-                                                    min: "",
-                                                    max: "",
-                                                });
-                                                // Reset filter
-                                                dispatch(
-                                                    setTransactionListFilter({
-                                                        ...transactionListFilter,
-                                                        min_amount: undefined,
-                                                        max_amount: undefined,
-                                                    }),
-                                                );
-                                                // Close popover
-                                                const popoverTrigger =
-                                                    document.getElementById("amount");
-
-                                                if (popoverTrigger instanceof HTMLElement) {
-                                                    popoverTrigger.click();
-                                                }
-                                            }}
-                                        >
-                                            Hủy
-                                        </Button>
-                                    </div>
-                                </div>
-                            </PopoverContent>
-                        </Popover>
-                    </div>
+                            </div>
+                        </PopoverContent>
+                    </Popover>
                     {/* Divider */}
                     {/* Reset filter */}
                     {/* Only render when filter change different with inital */}
@@ -551,26 +585,24 @@ export default function PaymentPage() {
                         transactionListFilter.max_amount) && (
                         <>
                             <div className="h-12 border border-r" />
-                            <div className="gap-2">
-                                <Button
-                                    className="text-base font-semibold text-red-500"
-                                    variant="ghost"
-                                    onClick={() => {
-                                        dispatch(clearTransactionListFilter());
-                                        setAmountRange({
-                                            min: "",
-                                            max: "",
-                                        });
-                                        // Reset search
-                                        setSearchSender("");
-                                        setSearchReceiver("");
-                                        // Reset date
-                                        setDate(undefined);
-                                    }}
-                                >
-                                    Xóa bộ lọc
-                                </Button>
-                            </div>
+                            <Button
+                                className="p-1 text-base font-semibold text-red-500"
+                                variant="ghost"
+                                onClick={() => {
+                                    dispatch(clearTransactionListFilter());
+                                    setAmountRange({
+                                        min: "",
+                                        max: "",
+                                    });
+                                    // Reset search
+                                    setSearchSender("");
+                                    setSearchReceiver("");
+                                    // Reset date
+                                    setDate(undefined);
+                                }}
+                            >
+                                Xóa bộ lọc
+                            </Button>
                         </>
                     )}
                 </CardDescription>

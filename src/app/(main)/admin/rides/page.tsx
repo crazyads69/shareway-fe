@@ -80,116 +80,85 @@ export default function RidePage() {
     return (
         <div className="flex min-h-screen w-full flex-col items-center justify-start">
             <h1 className="select-none self-start p-4 text-2xl font-bold">Danh sách chuyến đi</h1>
-            <Card className="mt-4 flex h-fit w-fit flex-row items-center self-start bg-white p-4">
-                <CardDescription className="flex w-full flex-row items-center space-x-4">
+            <Card className="mt-4 flex h-fit w-fit flex-row items-center self-start bg-white p-1 2xl:p-4">
+                <CardDescription className="flex w-full flex-row items-center space-x-2 2xl:space-x-4">
                     {/* Filter icon */}
-                    <div className="flex h-12 w-12 items-center justify-center">
+                    <div className="h-12å flex items-center justify-center">
                         <Filter size={32} />
                     </div>
                     {/* Filter description */}
-                    <div className="flex flex-col items-center">
+                    <div className="hidden w-full items-center 2xl:flex">
                         <span className="select-none text-base font-semibold">Bộ lọc</span>
                     </div>
                     {/* Divider */}
                     <div className="h-12 border border-r" />
                     {/* Filter button */}
-                    <div className="gap-2">
-                        <Popover>
-                            <PopoverTrigger asChild>
-                                <Button
-                                    className="justify-start text-left font-normal"
-                                    id="date"
-                                    variant="ghost"
-                                >
-                                    <CalendarIcon />
-                                    {date?.from ? (
-                                        date.to ? (
-                                            <>
-                                                {format(date.from, "dd/MM/yyyy")} -{" "}
-                                                {format(date.to, "dd/MM/yyyy")}
-                                            </>
-                                        ) : (
-                                            format(date.from, "dd/MM/yyyy")
-                                        )
-                                    ) : (
-                                        <span className="select-none text-base font-semibold">
-                                            Chọn khoảng ngày
-                                        </span>
-                                    )}
-                                </Button>
-                            </PopoverTrigger>
-                            <PopoverContent
-                                align="start"
-                                className="z-[400] w-auto rounded-lg border bg-white p-0"
+                    <Popover>
+                        <PopoverTrigger asChild>
+                            <Button
+                                className="justify-start p-1 text-left font-normal 2xl:p-2"
+                                id="date"
+                                variant="ghost"
                             >
-                                <Calendar
-                                    initialFocus
-                                    className="w-auto"
-                                    defaultMonth={date?.from}
-                                    mode="range"
-                                    modifiers={{
-                                        selected: (day: Date) =>
-                                            (date?.from != null &&
-                                                day.getTime() === date.from.getTime()) ||
-                                            (date?.to != null &&
-                                                day.getTime() === date.to.getTime()),
-                                    }}
-                                    modifiersStyles={{
-                                        selected: {
-                                            backgroundColor: "#3b82f6", // bg-blue-500
-                                            color: "white",
-                                        },
-                                    }}
-                                    numberOfMonths={2}
-                                    selected={date}
-                                    showOutsideDays={false}
-                                    onSelect={setDate}
-                                />
-                                {/* Apply button */}
-                                <Separator className="bg-slate-300" />
-                                <div className="flex flex-row items-center space-x-4 p-4">
-                                    <Button
-                                        className="bg-blue-500 text-base font-semibold text-white"
-                                        variant="default"
-                                        onClick={() => {
-                                            if (date?.from && date?.to) {
-                                                dispatch(
-                                                    setRideListFilter({
-                                                        ...rideListFilter,
-                                                        start_date_time: format(
-                                                            date.from,
-                                                            "yyyy-MM-dd",
-                                                        ),
-                                                        end_date_time: format(
-                                                            date.to,
-                                                            "yyyy-MM-dd",
-                                                        ),
-                                                    }),
-                                                );
-                                                // Close popover
-                                                const popoverTrigger =
-                                                    document.getElementById("date");
-
-                                                if (popoverTrigger instanceof HTMLElement) {
-                                                    popoverTrigger.click();
-                                                }
-                                            }
-                                        }}
-                                    >
-                                        Áp dụng
-                                    </Button>
-                                    {/* Reset button */}
-                                    <Button
-                                        className="bg-red-500 text-base font-semibold text-white"
-                                        variant="default"
-                                        onClick={() => {
-                                            setDate(undefined);
-                                            // Reset filter
+                                <CalendarIcon />
+                                {date?.from ? (
+                                    date.to ? (
+                                        <>
+                                            {format(date.from, "dd/MM/yyyy")} -{" "}
+                                            {format(date.to, "dd/MM/yyyy")}
+                                        </>
+                                    ) : (
+                                        format(date.from, "dd/MM/yyyy")
+                                    )
+                                ) : (
+                                    <span className="select-none text-base font-semibold">
+                                        Chọn khoảng ngày
+                                    </span>
+                                )}
+                            </Button>
+                        </PopoverTrigger>
+                        <PopoverContent
+                            align="center"
+                            className="z-[400] w-auto rounded-lg border bg-white p-0"
+                        >
+                            <Calendar
+                                initialFocus
+                                className="w-auto"
+                                defaultMonth={date?.from}
+                                mode="range"
+                                modifiers={{
+                                    selected: (day: Date) =>
+                                        (date?.from != null &&
+                                            day.getTime() === date.from.getTime()) ||
+                                        (date?.to != null && day.getTime() === date.to.getTime()),
+                                }}
+                                modifiersStyles={{
+                                    selected: {
+                                        backgroundColor: "#3b82f6", // bg-blue-500
+                                        color: "white",
+                                    },
+                                }}
+                                numberOfMonths={2}
+                                selected={date}
+                                showOutsideDays={false}
+                                onSelect={setDate}
+                            />
+                            {/* Apply button */}
+                            <Separator className="bg-slate-300" />
+                            <div className="flex flex-row items-center space-x-4 p-4">
+                                <Button
+                                    className="bg-blue-500 text-base font-semibold text-white"
+                                    variant="default"
+                                    onClick={() => {
+                                        if (date?.from && date?.to) {
                                             dispatch(
                                                 setRideListFilter({
                                                     ...rideListFilter,
-                                                    start_date_time: undefined,
-                                                    end_date_time: undefined,
+                                                    start_date_time: format(
+                                                        date.from,
+                                                        "yyyy-MM-dd",
+                                                    ),
+                                                    end_date_time: format(date.to, "yyyy-MM-dd"),
                                                 }),
                                             );
                                             // Close popover
@@ -198,19 +167,46 @@ export default function RidePage() {
                                             if (popoverTrigger instanceof HTMLElement) {
                                                 popoverTrigger.click();
                                             }
-                                        }}
-                                    >
-                                        Hủy
-                                    </Button>
-                                </div>
-                            </PopoverContent>
-                        </Popover>
-                    </div>
+                                        }
+                                    }}
+                                >
+                                    Áp dụng
+                                </Button>
+                                {/* Reset button */}
+                                <Button
+                                    className="bg-red-500 text-base font-semibold text-white"
+                                    variant="default"
+                                    onClick={() => {
+                                        setDate(undefined);
+                                        // Reset filter
+                                        dispatch(
+                                            setRideListFilter({
+                                                ...rideListFilter,
+                                                start_date_time: undefined,
+                                                end_date_time: undefined,
+                                            }),
+                                        );
+                                        // Close popover
+                                        const popoverTrigger = document.getElementById("date");
+
+                                        if (popoverTrigger instanceof HTMLElement) {
+                                            popoverTrigger.click();
+                                        }
+                                    }}
+                                >
+                                    Hủy
+                                </Button>
+                            </div>
+                        </PopoverContent>
+                    </Popover>
                     <div className="h-12 border border-r" />
                     <div className="gap-2">
                         <Popover>
                             <PopoverTrigger asChild>
-                                <Button className="text-base font-semibold" variant="ghost">
+                                <Button
+                                    className="p-1 text-base font-semibold 2xl:p-2"
+                                    variant="ghost"
+                                >
                                     Trạng thái
                                 </Button>
                             </PopoverTrigger>
@@ -272,8 +268,8 @@ export default function RidePage() {
                     {/* Search */}
                     <div className="flex flex-row items-center space-x-2">
                         <Input
-                            className="w-60"
-                            placeholder="Tìm kiếm theo người cho đi nhờ"
+                            className="w-52 text-sm 2xl:w-60"
+                            placeholder="Tìm theo người cho đi nhờ"
                             type="text"
                             value={searchDriver}
                             onChange={(e) => setSearchDriver(e.target.value)}
@@ -282,8 +278,8 @@ export default function RidePage() {
                     <div className="h-12 border border-r" />
                     <div className="flex flex-row items-center space-x-2">
                         <Input
-                            className="w-60"
-                            placeholder="Tìm kiếm theo người đi nhờ"
+                            className="w-42 2xl:w-60"
+                            placeholder="Tìm theo người đi nhờ"
                             type="text"
                             value={searchHitcher}
                             onChange={(e) => setSearchHitcher(e.target.value)}
@@ -292,8 +288,8 @@ export default function RidePage() {
                     <div className="h-12 border border-r" />
                     <div className="flex flex-row items-center space-x-2">
                         <Input
-                            className="w-60"
-                            placeholder="Tìm kiếm theo địa điểm"
+                            className="w-36 text-sm 2xl:w-60"
+                            placeholder="Tìm theo địa điểm"
                             type="text"
                             value={searchRoute}
                             onChange={(e) => setSearchRoute(e.target.value)}
@@ -322,22 +318,20 @@ export default function RidePage() {
                         (rideListFilter.ride_status && rideListFilter.ride_status.length > 0)) && (
                         <>
                             <div className="h-12 border border-r" />
-                            <div className="gap-2">
-                                <Button
-                                    className="text-base font-semibold text-red-500"
-                                    variant="ghost"
-                                    onClick={() => {
-                                        dispatch(clearRideListFilter());
-                                        setSearchDriver("");
-                                        setSearchHitcher("");
-                                        setSearchRoute("");
-                                        setSearchVehicle("");
-                                        setDate(undefined);
-                                    }}
-                                >
-                                    Xóa bộ lọc
-                                </Button>
-                            </div>
+                            <Button
+                                className="p-1 font-semibold text-red-500 2xl:p-2 2xl:text-base"
+                                variant="ghost"
+                                onClick={() => {
+                                    dispatch(clearRideListFilter());
+                                    setSearchDriver("");
+                                    setSearchHitcher("");
+                                    setSearchRoute("");
+                                    setSearchVehicle("");
+                                    setDate(undefined);
+                                }}
+                            >
+                                Xóa bộ lọc
+                            </Button>
                         </>
                     )}
                 </CardDescription>
