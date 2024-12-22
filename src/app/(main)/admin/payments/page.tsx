@@ -13,7 +13,7 @@ import ReactPaginate from "react-paginate";
 import { Button } from "@/components/ui/button";
 import { Calendar } from "@/components/ui/calendar";
 import { Input } from "@/components/ui/input";
-import useGetTransactionList from "@/hooks/transaction-list/use-get-transaction-list";
+import useGetTransactionList from "@/hooks/transaction/use-get-transaction-list";
 import { RootState } from "@/redux/store/store";
 import useDebounce from "@/hooks/use-debounce/use-debounce";
 import {

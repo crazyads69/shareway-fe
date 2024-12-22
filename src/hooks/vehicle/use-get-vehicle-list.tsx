@@ -3,7 +3,7 @@ import { AxiosError } from "axios";
 import { useEffect } from "react";
 
 import { RootState } from "@/redux/store/store";
-import { VehicleListFilter, VehicleListResponse } from "@/models/vehicle-list";
+import { VehicleListFilter, VehicleListResponse } from "@/models/vehicle/vehicle-list";
 import {
     fetchVehicleList,
     fetchVehicleListCompleted,

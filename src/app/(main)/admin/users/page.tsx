@@ -14,7 +14,7 @@ import { Separator } from "@/components/ui/separator";
 import { Calendar } from "@/components/ui/calendar";
 import { Button } from "@/components/ui/button";
 import { RootState } from "@/redux/store/store";
-import useGetUserList from "@/hooks/user-list/use-get-user-list";
+import useGetUserList from "@/hooks/user/use-get-user-list";
 import { Card, CardDescription } from "@/components/ui/card";
 import { clearUserListFilter, setUserListFilter } from "@/redux/slice/user-slice";
 import { Input } from "@/components/ui/input";
