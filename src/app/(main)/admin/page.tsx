@@ -4,11 +4,11 @@
 
 import React, { useState } from "react";
 
-import GeneralDashboardResult from "@/components/page/dashboard/general-dashboard-result";
-import UserDashboard from "@/components/page/dashboard/user-dashboard";
-import RideDashboard from "@/components/page/dashboard/ride-dashboard";
-import TransactionDashboard from "@/components/page/dashboard/transaction-dashboard";
-import VehicleDashboard from "@/components/page/dashboard/vehicle-dashboard";
+import GeneralDashboardResult from "@/components/page/dashboard/general-dashboard-result/general-dashboard-result";
+import UserDashboard from "@/components/page/dashboard/user-dashboard/user-dashboard";
+import RideDashboard from "@/components/page/dashboard/ride-dashboard/ride-dashboard";
+import TransactionDashboard from "@/components/page/dashboard/transaction-dashboard/transaction-dashboard";
+import VehicleDashboard from "@/components/page/dashboard/vehicle-dashboard/vehicle-dashboard";
 import { DateRange } from "react-day-picker";
 import { Button } from "@/components/ui/button";
 import {

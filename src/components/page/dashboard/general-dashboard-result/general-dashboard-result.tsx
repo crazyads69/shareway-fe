@@ -3,7 +3,7 @@
 import { Skeleton } from "@/components/ui/skeleton";
 import useGetGeneralDashboard from "@/hooks/dashboard/use-get-general-dashboard";
 
-import DashboardCard from "./dashboard-card";
+import DashboardCard from "../dashboard-card/dashboard-card";
 
 export default function GeneralDashboardResult() {
     const { isLoadingGeneralDashboard, generalDashboard } = useGetGeneralDashboard();
