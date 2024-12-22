@@ -29,6 +29,7 @@ import { Separator } from "@/components/ui/separator";
 import { Skeleton } from "@/components/ui/skeleton";
 import { PaymentTable } from "@/components/page/payment/payment-table";
 import { paymentColumns } from "@/components/page/payment/payment-columns";
+import { DataTable } from "@/components/global/data-table/data-table";
 
 interface AmountRange {
     min: number | undefined;
@@ -626,7 +627,7 @@ export default function PaymentPage() {
             ) : (
                 <>
                     <div className="mt-4 flex w-full flex-col items-center justify-center space-y-4">
-                        <PaymentTable
+                        <DataTable
                             columns={paymentColumns}
                             data={transactionList.transactions ?? []}
                         />

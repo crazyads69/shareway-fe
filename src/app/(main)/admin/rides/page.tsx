@@ -23,6 +23,7 @@ import useDebounce from "@/hooks/use-debounce/use-debounce";
 import { Skeleton } from "@/components/ui/skeleton";
 import { RideTable } from "@/components/page/ride/ride-table";
 import { rideColumns } from "@/components/page/ride/ride-columns";
+import { DataTable } from "@/components/global/data-table/data-table";
 
 export default function RidePage() {
     const dispatch = useDispatch();
@@ -355,7 +356,7 @@ export default function RidePage() {
             ) : (
                 <>
                     <div className="mt-4 flex w-full flex-col items-center justify-center space-y-4">
-                        <RideTable columns={rideColumns} data={rideList?.rides ?? []} />
+                        <DataTable columns={rideColumns} data={rideList?.rides ?? []} />
                     </div>
                     <div className="mb-4 mt-4 flex w-full flex-row items-center justify-between space-x-4">
                         <h1 className="select-none text-sm font-semibold">

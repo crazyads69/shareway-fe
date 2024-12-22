@@ -22,6 +22,7 @@ import { UserTable } from "@/components/page/user/user-table";
 import { userColumns } from "@/components/page/user/user-columns";
 import { Skeleton } from "@/components/ui/skeleton";
 import useDebounce from "@/hooks/use-debounce/use-debounce";
+import { DataTable } from "@/components/global/data-table/data-table";
 
 export default function UserPage() {
     const { isLoadingUserList, userList, getUserList } = useGetUserList();
@@ -327,7 +328,7 @@ export default function UserPage() {
             ) : (
                 <>
                     <div className="mt-4 flex w-full flex-col items-center justify-center space-y-4">
-                        <UserTable columns={userColumns} data={userList?.users} />
+                        <DataTable columns={userColumns} data={userList?.users} />
                     </div>
                     <div className="mb-4 mt-4 flex w-full flex-row items-center justify-between space-x-4">
                         <h1 className="select-none text-sm font-semibold">
