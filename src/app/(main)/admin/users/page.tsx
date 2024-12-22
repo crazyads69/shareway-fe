@@ -18,7 +18,6 @@ import useGetUserList from "@/hooks/user-list/use-get-user-list";
 import { Card, CardDescription } from "@/components/ui/card";
 import { clearUserListFilter, setUserListFilter } from "@/redux/slice/user-slice";
 import { Input } from "@/components/ui/input";
-import { UserTable } from "@/components/page/user/user-table";
 import { userColumns } from "@/components/page/user/user-columns";
 import { Skeleton } from "@/components/ui/skeleton";
 import useDebounce from "@/hooks/use-debounce/use-debounce";
