@@ -27,7 +27,6 @@ import {
 } from "@/utils/constant/constant";
 import { Separator } from "@/components/ui/separator";
 import { Skeleton } from "@/components/ui/skeleton";
-import { PaymentTable } from "@/components/page/payment/payment-table";
 import { paymentColumns } from "@/components/page/payment/payment-columns";
 import { DataTable } from "@/components/global/data-table/data-table";
 
