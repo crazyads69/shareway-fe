@@ -1,4 +1,4 @@
-import { GetReportDetailsInput } from "@/models/report-details";
+import { GetReportDetailsInput } from "@/models/dashboard/report/report-details";
 import { showErrorMessage, showSuccessMessage } from "@/redux/slice/message-slice";
 import axiosClient from "@/utils/axios-client/axios-client";
 import { AnyAction, Dispatch } from "@reduxjs/toolkit";

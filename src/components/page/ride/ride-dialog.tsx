@@ -22,7 +22,7 @@ import {
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { ScrollArea } from "@/components/ui/scroll-area";
-import { RideDetail, type UserInfo } from "@/models/ride-list";
+import { RideDetail, type UserInfo } from "@/models/ride/ride-list";
 import {
     RIDE_STATUS_FILTER_OPTIONS,
     TRANSACTION_PAYMENT_METHOD_FILTER_OPTIONS,

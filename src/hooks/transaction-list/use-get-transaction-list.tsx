@@ -3,7 +3,7 @@ import { AxiosError } from "axios";
 import { useEffect } from "react";
 
 import { RootState } from "@/redux/store/store";
-import { TransactionListFilter, TransactionListResponse } from "@/models/transaction-list";
+import { TransactionListFilter, TransactionListResponse } from "@/models/transaction/transaction-list";
 import {
     fetchTransactionList,
     fetchTransactionListCompleted,

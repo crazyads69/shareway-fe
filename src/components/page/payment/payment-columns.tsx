@@ -4,7 +4,7 @@
 
 import { ColumnDef } from "@tanstack/react-table";
 
-import { TransactionDetail } from "@/models/transaction-list";
+import { TransactionDetail } from "@/models/transaction/transaction-list";
 import {
     TRANSACTION_PAYMENT_METHOD_FILTER_OPTIONS,
     TRANSACTION_STATUS_FILTER_OPTIONS,

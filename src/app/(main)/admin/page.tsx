@@ -32,7 +32,7 @@ import { Popover, PopoverTrigger, PopoverContent } from "@radix-ui/react-popover
 import { format } from "date-fns";
 import { useDispatch } from "react-redux";
 import { showErrorMessage } from "@/redux/slice/message-slice";
-import { GetReportDetailsInput } from "@/models/report-details";
+import { GetReportDetailsInput } from "@/models/dashboard/report/report-details";
 import GetReportDetails from "@/api/dashboard/get-report-details";
 
 export default function AdminPage() {

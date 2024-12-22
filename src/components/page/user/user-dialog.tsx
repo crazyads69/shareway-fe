@@ -12,7 +12,7 @@ import {
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { ScrollArea } from "@/components/ui/scroll-area";
-import { UserDetail } from "@/models/user-list";
+import { UserDetail } from "@/models//user/user-list";
 
 function InfoItem({
     label,

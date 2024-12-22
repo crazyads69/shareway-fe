@@ -1,6 +1,6 @@
 import { z } from "zod";
 
-import { createApiResponseSchema } from "./api-model";
+import { createApiResponseSchema } from "../../api-model";
 
 const vehicleDashboardResponseSchema = z.object({
     vehicle_stats: z.array(

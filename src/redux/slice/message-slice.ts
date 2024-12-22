@@ -3,7 +3,7 @@ import type { PayloadAction } from "@reduxjs/toolkit";
 
 import { createSlice } from "@reduxjs/toolkit";
 
-import { Message } from "@/models/message-model";
+import { Message } from "@/models/message/message-model";
 
 export interface MessageState {
     message: Message | null;

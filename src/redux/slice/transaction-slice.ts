@@ -2,7 +2,7 @@
 
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-import { TransactionList, TransactionListFilter } from "@/models/transaction-list";
+import { TransactionList, TransactionListFilter } from "@/models/transaction/transaction-list";
 
 export interface TransactionState {
     isLoadingTransactionList: boolean;
