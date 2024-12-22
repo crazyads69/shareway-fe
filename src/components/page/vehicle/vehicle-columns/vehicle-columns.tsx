@@ -4,9 +4,9 @@
 
 import { ColumnDef } from "@tanstack/react-table";
 
-import { VehicleDetail } from "@/models/vehicle-list";
+import { VehicleDetail } from "@/models/vehicle/vehicle-list";
 
-import { VehicleDetailsDialog } from "./vehicle-dialog";
+import { VehicleDetailsDialog } from "../vehicle-dialog/vehicle-dialog";
 
 export const vehicleColumns: ColumnDef<VehicleDetail>[] = [
     {

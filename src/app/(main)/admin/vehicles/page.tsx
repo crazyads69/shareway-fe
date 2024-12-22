@@ -20,7 +20,7 @@ import { Input } from "@/components/ui/input";
 import { Calendar } from "@/components/ui/calendar";
 import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
-import { vehicleColumns } from "@/components/page/vehicle/vehicle-columns";
+import { vehicleColumns } from "@/components/page/vehicle/vehicle-columns/vehicle-columns";
 import { DataTable } from "@/components/global/data-table/data-table";
 
 export default function VehiclePage() {

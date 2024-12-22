@@ -4,10 +4,10 @@
 
 import { ColumnDef } from "@tanstack/react-table";
 
-import { RideDetail } from "@/models/ride-list";
+import { RideDetail } from "@/models/ride/ride-list";
 import { RIDE_STATUS_FILTER_OPTIONS } from "@/utils/constant/constant";
 
-import { RideDetailsDialog } from "./ride-dialog";
+import { RideDetailsDialog } from "../ride-dialog/ride-dialog";
 
 export const rideColumns: ColumnDef<RideDetail>[] = [
     {

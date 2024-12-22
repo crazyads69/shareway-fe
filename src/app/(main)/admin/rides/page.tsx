@@ -21,7 +21,7 @@ import { clearRideListFilter, setRideListFilter } from "@/redux/slice/ride-slice
 import { RootState } from "@/redux/store/store";
 import useDebounce from "@/hooks/use-debounce/use-debounce";
 import { Skeleton } from "@/components/ui/skeleton";
-import { rideColumns } from "@/components/page/ride/ride-columns";
+import { rideColumns } from "@/components/page/ride/ride-columns/ride-columns";
 import { DataTable } from "@/components/global/data-table/data-table";
 
 export default function RidePage() {

@@ -10,7 +10,7 @@ import {
     TRANSACTION_STATUS_FILTER_OPTIONS,
 } from "@/utils/constant/constant";
 
-import { PaymentDetailsDialog } from "./payment-dialog";
+import { PaymentDetailsDialog } from "../payment-dialog/payment-dialog";
 
 export const paymentColumns: ColumnDef<TransactionDetail>[] = [
     {

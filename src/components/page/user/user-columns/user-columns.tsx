@@ -4,9 +4,9 @@
 
 import { ColumnDef } from "@tanstack/react-table";
 
-import { UserDetail } from "@/models/user-list";
+import { UserDetail } from "@/models/user/user-list";
 
-import { UserDetailsDialog } from "./user-dialog";
+import { UserDetailsDialog } from "../user-dialog/user-dialog";
 
 export const userColumns: ColumnDef<UserDetail>[] = [
     {
