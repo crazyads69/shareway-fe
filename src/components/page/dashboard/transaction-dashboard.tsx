@@ -23,7 +23,7 @@ import {
 import { Calendar } from "@/components/ui/calendar";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { Skeleton } from "@/components/ui/skeleton";
-import useGetTransactionDashboard from "@/hooks/dashboard/use-get-transaction-dashboard";
+import useGetTransactionDashboard from "@/hooks/dashboard/transaction/use-get-transaction-dashboard";
 
 const chartConfig = {
     total: {

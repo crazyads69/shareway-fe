@@ -13,7 +13,7 @@ import {
     DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { DASHBOARD_FILTER_OPTIONS } from "@/utils/constant/constant";
-import useGetUserDashboard from "@/hooks/dashboard/use-get-user-dashboard";
+import useGetUserDashboard from "@/hooks/dashboard/user/use-get-user-dashboard";
 import { Card, CardHeader } from "@/components/ui/card";
 import {
     ChartConfig,

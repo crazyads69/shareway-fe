@@ -23,7 +23,7 @@ import {
 import { Calendar } from "@/components/ui/calendar";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { Skeleton } from "@/components/ui/skeleton";
-import UseGetRideDashboard from "@/hooks/dashboard/use-get-ride-dashboard";
+import UseGetRideDashboard from "@/hooks/dashboard/ride/use-get-ride-dashboard";
 
 const chartConfig = {
     count: {

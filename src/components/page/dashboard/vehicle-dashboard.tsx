@@ -23,7 +23,7 @@ import {
 import { Calendar } from "@/components/ui/calendar";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { Skeleton } from "@/components/ui/skeleton";
-import useGetVehicleDashboard from "@/hooks/dashboard/use-get-vehicle-dashboard";
+import useGetVehicleDashboard from "@/hooks/dashboard/vehicle/use-get-vehicle-dashboard";
 
 const chartConfig = {
     count: {
