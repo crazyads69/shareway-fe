@@ -1,7 +1,7 @@
 /* eslint-disable import/prefer-default-export */
 import { z } from "zod";
 
-import { createApiResponseSchema } from "./api-model";
+import { createApiResponseSchema } from "../api-model";
 
 export const generalDashboardResponseSchema = z.object({
     ride_change: z.number(),

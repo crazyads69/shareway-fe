@@ -3,7 +3,7 @@ import { Dispatch } from "react";
 import { AxiosError } from "axios";
 import { AppRouterInstance } from "next/dist/shared/lib/app-router-context.shared-runtime";
 
-import { AdminResponse, LoginInput } from "@/models/auth-model";
+import { AdminResponse, LoginInput } from "@/models/auth/auth-model";
 import axiosClient from "@/utils/axios-client/axios-client";
 import { loginSuccess } from "@/redux/slice/auth-slice";
 import { showErrorMessage } from "@/redux/slice/message-slice";

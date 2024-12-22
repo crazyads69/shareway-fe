@@ -1,6 +1,6 @@
 import { z } from "zod";
 
-import { createApiResponseSchema } from "./api-model";
+import { createApiResponseSchema } from "../../api-model";
 
 const rideDashboardResponseSchema = z.object({
     ride_stats: z.array(

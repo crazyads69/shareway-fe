@@ -19,7 +19,7 @@ import {
     FormLabel,
     FormMessage,
 } from "@/components/ui/form";
-import { LoginInput, LoginInputSchema } from "@/models/auth-model";
+import { LoginInput, LoginInputSchema } from "@/models/auth/auth-model";
 import PostLogin from "@/api/auth/post-login";
 
 export default function LoginForm() {
