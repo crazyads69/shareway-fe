@@ -5,7 +5,7 @@ import { useDispatch } from "react-redux";
 import { usePathname, useRouter } from "next/navigation";
 
 import axiosClient from "@/utils/axios-client/axios-client";
-import { GetAdminProfileResponse } from "@/models/auth-model";
+import { GetAdminProfileResponse } from "@/models/auth/auth-model";
 import { logoutSuccess, updateProfile } from "@/redux/slice/auth-slice";
 import FullPageLoading from "@/components/global/loading/full-page-loading";
 

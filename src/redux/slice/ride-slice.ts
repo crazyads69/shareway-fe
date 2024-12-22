@@ -2,7 +2,7 @@
 
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-import { RideList, RideListFilter } from "@/models/ride-list";
+import { RideList, RideListFilter } from "@/models/ride/ride-list";
 
 export interface RideState {
     isLoadingRideList: boolean;

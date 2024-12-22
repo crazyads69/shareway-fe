@@ -1,7 +1,7 @@
 /* eslint-disable no-param-reassign */
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-import { Admin, AdminInfo } from "@/models/auth-model";
+import { Admin, AdminInfo } from "@/models/auth/auth-model";
 
 export interface AuthState {
     isAuthenticated: boolean;

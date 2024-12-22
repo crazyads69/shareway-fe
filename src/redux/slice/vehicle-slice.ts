@@ -1,7 +1,7 @@
 /* eslint-disable no-param-reassign */
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-import { VehicleList, VehicleListFilter } from "@/models/vehicle-list";
+import { VehicleList, VehicleListFilter } from "@/models/vehicle/vehicle-list";
 
 export interface VehicleState {
     isLoadingVehicleList: boolean;

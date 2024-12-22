@@ -4,7 +4,7 @@ import { AxiosError } from "axios";
 
 import axiosClient from "@/utils/axios-client/axios-client";
 import { showErrorMessage } from "@/redux/slice/message-slice";
-import { RideDashboard, RideDashboardResponse } from "@/models/ride-dashboard";
+import { RideDashboard, RideDashboardResponse } from "@/models/dashboard/ride/ride-dashboard";
 
 export default function useGetRideDashboard() {
     const [rideDashboardData, setRideDashboardData] = useState<RideDashboard | null>(null);

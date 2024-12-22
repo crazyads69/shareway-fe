@@ -233,7 +233,7 @@ export default function RidePage() {
                                                     ) {
                                                         const newStatus =
                                                             rideListFilter.ride_status.filter(
-                                                                (status: string) => status !== option.value,
+                                                                (status) => status !== option.value,
                                                             );
 
                                                         dispatch(

@@ -2,7 +2,7 @@
 
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-import { UserList, UserListFilter } from "@/models/user-list";
+import { UserList, UserListFilter } from "@/models/user/user-list";
 
 export interface UserState {
     userList: UserList | null;

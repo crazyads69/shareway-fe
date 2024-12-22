@@ -4,7 +4,10 @@ import { AxiosError } from "axios";
 
 import axiosClient from "@/utils/axios-client/axios-client";
 import { showErrorMessage } from "@/redux/slice/message-slice";
-import { TransactionDashboard, TransactionDashboardResponse } from "@/models/transaction-dashboard";
+import {
+    TransactionDashboard,
+    TransactionDashboardResponse,
+} from "@/models/dashboard/transaction/transaction-dashboard";
 
 export default function useGetTransactionDashboard() {
     const [transactionDashboardData, setTransactionDashboardData] =

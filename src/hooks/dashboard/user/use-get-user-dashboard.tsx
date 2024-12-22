@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { AxiosError } from "axios";
 
-import { UserDashboard, UserDashboardResponse } from "@/models/user-dashboard";
+import { UserDashboard, UserDashboardResponse } from "@/models/dashboard/user/user-dashboard";
 import axiosClient from "@/utils/axios-client/axios-client";
 import { showErrorMessage } from "@/redux/slice/message-slice";
 
