@@ -11,7 +11,7 @@ import { Filter, CalendarIcon } from "lucide-react";
 import ReactPaginate from "react-paginate";
 
 import { Separator } from "@/components/ui/separator";
-import useGetVehicleList from "@/hooks/vehicle-list/use-get-vehicle-list";
+import useGetVehicleList from "@/hooks/vehicle/use-get-vehicle-list";
 import { RootState } from "@/redux/store/store";
 import useDebounce from "@/hooks/use-debounce/use-debounce";
 import { clearVehicleListFilter, setVehicleListFilter } from "@/redux/slice/vehicle-slice";

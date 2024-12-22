@@ -14,7 +14,7 @@ import { Separator } from "@/components/ui/separator";
 import { Calendar } from "@/components/ui/calendar";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import useGetRideList from "@/hooks/ride-list/use-get-ride-list";
+import useGetRideList from "@/hooks/ride/use-get-ride-list";
 import { Card, CardDescription } from "@/components/ui/card";
 import { RIDE_STATUS_FILTER_OPTIONS } from "@/utils/constant/constant";
 import { clearRideListFilter, setRideListFilter } from "@/redux/slice/ride-slice";
