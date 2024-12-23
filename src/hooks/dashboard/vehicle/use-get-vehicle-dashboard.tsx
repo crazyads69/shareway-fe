@@ -4,7 +4,10 @@ import { AxiosError } from "axios";
 
 import axiosClient from "@/utils/axios-client/axios-client";
 import { showErrorMessage } from "@/redux/slice/message-slice";
-import { VehicleDashboard, VehicleDashboardResponse } from "@/models/vehicle-dashboard";
+import {
+    VehicleDashboard,
+    VehicleDashboardResponse,
+} from "@/models/dashboard/vehicle/vehicle-dashboard";
 
 export default function useGetVehicleDashboard() {
     const [vehicleDashboardData, setVehicleDashboardData] = useState<VehicleDashboard | null>(null);
