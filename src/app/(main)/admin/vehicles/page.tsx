@@ -67,6 +67,7 @@ export default function VehiclePage() {
         debouncedSearchCavet,
     ]);
 
+    //thử xem nếu không được thì bỏ
     // // Handle date filter when selected range date complete
     // useEffect(() => {
     //     // Update filter when date range is selected
@@ -306,7 +307,7 @@ export default function VehiclePage() {
                     </div>
                     {/* Divider */}
                     {/* Reset filter */}
-                    {/* Only render when userFilterState change different with inital */}
+                    {/* Chỉ render nếu có thay đổi */}
                     {/* Divider */}
                     {(vehicleListFilter.start_date !== "" ||
                         vehicleListFilter.end_date !== "" ||

@@ -44,7 +44,7 @@ export default function Alert() {
 
             toastIdRef.current = id;
 
-            // Clear message after 5 seconds
+            // Dọn lời nhắn sau mỗi 5 giây
             const timeoutId = setTimeout(() => {
                 dispatch(clearMessage());
             }, 5000);
