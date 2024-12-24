@@ -22,17 +22,14 @@ export default function useGetUserDashboard() {
             const queryParams = new URLSearchParams();
 
             queryParams.append("filter", filter);
-            // Check if startDate is not null
+            // Kiểm tra xem startDate với endDate có null không và thay đổi định dạng của chúng thành: yyyy-MM-dd
             if (startDate) {
-                // Convert startDate to formart: yyyy-MM-dd
                 const startDateString = startDate.toISOString().split("T")[0];
 
                 queryParams.append("start_date", startDateString);
             }
 
-            // Check if endDate is not null
             if (endDate) {
-                // Convert endDate to formart: yyyy-MM-dd
                 const endDateString = endDate.toISOString().split("T")[0];
 
                 queryParams.append("end_date", endDateString);

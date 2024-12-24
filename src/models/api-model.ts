@@ -1,6 +1,6 @@
 import { z } from "zod";
 
-// Create a generic function to generate the schema
+// Function tạo schema
 export function createApiResponseSchema<T extends z.ZodTypeAny>(dataSchema: T) {
     return z.object({
         data: dataSchema,
@@ -11,7 +11,7 @@ export function createApiResponseSchema<T extends z.ZodTypeAny>(dataSchema: T) {
     });
 }
 
-// Parse the schema for the response
+// Đưa schema vào response
 export function parseApiResponse<T extends z.ZodTypeAny>(
     response: unknown,
     schema: z.ZodType<{

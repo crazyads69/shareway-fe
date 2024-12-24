@@ -22,10 +22,10 @@ export default function useGetRideList() {
         try {
             // Start loading state
             dispatch(fetchRideList());
-            // Build query string from filter
+            // Xây dựng query từ filter
             const query = new URLSearchParams();
 
-            // Add page and limit to query
+            // Thêm trnag và limit cho query
             if (rideListFilter.page) {
                 query.append("page", rideListFilter.page.toString());
             }
@@ -34,7 +34,7 @@ export default function useGetRideList() {
                 query.append("limit", rideListFilter.limit.toString());
             }
 
-            // Add start_date_time and end_date_time to query
+            // Thêm start_date_time và end_date_time vào query
             if (rideListFilter.start_date_time) {
                 query.append("start_date_time", rideListFilter.start_date_time);
             }
@@ -43,27 +43,27 @@ export default function useGetRideList() {
                 query.append("end_date_time", rideListFilter.end_date_time);
             }
 
-            // Add search_driver to query
+            // Thêm tìm người cho đi nhờ
             if (rideListFilter.search_driver) {
                 query.append("search_driver", rideListFilter.search_driver);
             }
 
-            // Add search_hitcher to query
+            // Thêm tìm người đi nhờ
             if (rideListFilter.search_hitcher) {
                 query.append("search_hitcher", rideListFilter.search_hitcher);
             }
 
-            // Add search_route to query
+            // Thêm tìm route
             if (rideListFilter.search_route) {
                 query.append("search_route", rideListFilter.search_route);
             }
 
-            // Add search_vehicle to query
+            // Thêm tìm phương tiện
             if (rideListFilter.search_vehicle) {
                 query.append("search_vehicle", rideListFilter.search_vehicle);
             }
 
-            // Add ride_status to query
+            // Thêm trạng thái chuyến đi
             if (rideListFilter.ride_status && rideListFilter.ride_status.length > 0) {
                 // Ride status is an array, so we need to join it to a string before adding to query
                 query.append("ride_status", rideListFilter.ride_status.join(","));

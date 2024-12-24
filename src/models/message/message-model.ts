@@ -1,6 +1,6 @@
 import { z } from "zod";
 
-// Message to show toast notification in the UI for admin actions
+// Tin nhắn để show thông báo trong phần admin
 const Message = z.object({
     title: z.string(),
     type: z.enum(["success", "error", "info"]),
