@@ -55,7 +55,7 @@ export function UserDetailsDialog({ user }: { user: UserDetail }) {
                 </DialogHeader>
                 <ScrollArea className="mt-4 max-h-[80vh] pr-4">
                     <div className="space-y-6">
-                        {/* Basic Information */}
+                        {/* Thông tin cơ bản */}
                         <div className="flex flex-col items-center space-y-4 rounded-lg bg-slate-100 p-4">
                             <Avatar className="border-primary h-24 w-24 border-2">
                                 <AvatarImage src={user?.avatar_url} />
@@ -96,7 +96,7 @@ export function UserDetailsDialog({ user }: { user: UserDetail }) {
 
                         <Separator className="bg-slate-200" />
 
-                        {/* Status and Statistics */}
+                        {/* Trạng thái và thống kê */}
                         <div className="space-y-2 rounded-lg bg-slate-100 p-4">
                             <h3 className="mb-3 select-none text-lg font-semibold">
                                 Trạng thái và Thống kê

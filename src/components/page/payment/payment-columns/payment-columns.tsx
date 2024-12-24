@@ -64,7 +64,7 @@ export const paymentColumns: ColumnDef<TransactionDetail>[] = [
             );
         },
         cell: ({ row }) => {
-            // Format the amount to vnd
+            // Chuyển đơn vị tiền thành VND
             const amount = row.getValue("amount") as number;
             const formattedAmount = new Intl.NumberFormat("vi-VN", {
                 style: "currency",

@@ -34,21 +34,21 @@ export default function GeneralDashboardResult() {
                 <DashboardCard
                     change={generalDashboard.ride_change}
                     changeType="ride"
-                    iconSrc="/total_ride.svg" // You might want to change this to a ride-specific icon
+                    iconSrc="/total_ride.svg" 
                     title="Tổng chuyến đi"
                     value={generalDashboard.total_rides}
                 />
                 <DashboardCard
                     change={generalDashboard.transaction_change}
                     changeType="transaction"
-                    iconSrc="/total_transaction.svg" // You might want to change this to a ride-specific icon
+                    iconSrc="/total_transaction.svg" 
                     title="Tổng giao dịch"
                     value={generalDashboard.total_transactions}
                 />
                 <DashboardCard
                     change={generalDashboard.vehicle_change}
                     changeType="vehicle"
-                    iconSrc="/total_vehicle.svg" // You might want to change this to a ride-specific icon
+                    iconSrc="/total_vehicle.svg" 
                     title="Tổng phương tiện"
                     value={generalDashboard.total_vehicles}
                 />

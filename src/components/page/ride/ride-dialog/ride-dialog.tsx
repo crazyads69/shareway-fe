@@ -106,7 +106,7 @@ export function RideDetailsDialog({ ride }: { ride: RideDetail }) {
                 </DialogHeader>
                 <ScrollArea className="mt-4 max-h-[80vh] pr-4">
                     <div className="space-y-6">
-                        {/* Ride Information */}
+                        {/* Thông tin chuyến đi */}
                         <div className="space-y-2 rounded-lg bg-slate-100 p-4">
                             <h3 className="mb-3 select-none text-lg font-semibold">
                                 Thông tin chuyến đi
@@ -159,7 +159,7 @@ export function RideDetailsDialog({ ride }: { ride: RideDetail }) {
 
                         <Separator className="bg-slate-200" />
 
-                        {/* Driver Information */}
+                        {/* Thông tin người cho đi nhờ */}
                         <div>
                             <h3 className="mb-3 select-none text-lg font-semibold">
                                 Thông tin người cho đi nhờ
@@ -169,7 +169,7 @@ export function RideDetailsDialog({ ride }: { ride: RideDetail }) {
 
                         <Separator className="bg-slate-200" />
 
-                        {/* Hitcher Information */}
+                        {/* Thông tin người đi nhờ */}
                         <div>
                             <h3 className="mb-3 select-none text-lg font-semibold">
                                 Thông tin người đi nhờ
@@ -179,7 +179,7 @@ export function RideDetailsDialog({ ride }: { ride: RideDetail }) {
 
                         <Separator className="bg-slate-200" />
 
-                        {/* Vehicle Information */}
+                        {/* Thông tin phương tiện */}
                         <div className="rounded-lg bg-slate-100 p-4">
                             <h3 className="mb-3 select-none text-lg font-semibold">
                                 Thông tin phương tiện

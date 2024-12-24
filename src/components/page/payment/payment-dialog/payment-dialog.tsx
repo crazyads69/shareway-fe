@@ -131,7 +131,7 @@ export function PaymentDetailsDialog({ transaction }: { transaction: Transaction
 
                         <Separator className="bg-slate-200" />
 
-                        {/* Sender Information */}
+                        {/* tThoongtin người gửi */}
                         <div>
                             <h3 className="mb-3 select-none text-lg font-semibold">
                                 Thông tin người gửi
@@ -141,7 +141,7 @@ export function PaymentDetailsDialog({ transaction }: { transaction: Transaction
 
                         <Separator className="bg-slate-200" />
 
-                        {/* Receiver Information */}
+                        {/* Thông tin người nhận */}
                         <div>
                             <h3 className="mb-3 select-none text-lg font-semibold">
                                 Thông tin người nhận

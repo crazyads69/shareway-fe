@@ -115,7 +115,7 @@ export const rideColumns: ColumnDef<RideDetail>[] = [
         },
 
         cell: ({ row }) => {
-            // Format the amount to vnd
+            // Chuyển đơn vị tiền thành VND
             const fare = row.getValue("fare") as number;
             const formattedFare = new Intl.NumberFormat("vi-VN", {
                 style: "currency",
@@ -154,7 +154,7 @@ export const rideColumns: ColumnDef<RideDetail>[] = [
         },
         cell: ({ row }) => {
             const status = row.getValue("status") as string;
-            // Map status to Vietnamese
+            // Chuyển trạng thái thành Vietnamese
             const statusMap = RIDE_STATUS_FILTER_OPTIONS.find((option) => option.value === status);
 
             return <div className="select-none text-center">{statusMap?.label}</div>;

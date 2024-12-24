@@ -47,7 +47,7 @@ export default function VehicleDashboard() {
                 getVehicleDashboard(selectedFilter, date.from, date.to);
             }
         } else {
-            // Reset date when change filter
+            // Khôi phục ngày khi chuyển filter
             setDate(undefined);
             getVehicleDashboard(selectedFilter, null, null);
         }
