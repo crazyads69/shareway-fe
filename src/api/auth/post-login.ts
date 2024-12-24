@@ -23,9 +23,9 @@ export default async function PostLogin(
 
         if (response.data.success) {
             dispatch(loginSuccess(response.data.data));
-            // Save the token to local storage
+            // Lưu token vào bộ nhớ local
             localStorage.setItem("ACCESS_TOKEN", response.data.data.token);
-            // Redirect to the admin page
+            // Đi tới trang admin
             router.push("/admin");
         } else {
             throw new Error(response.data.message_vi || "Lỗi không xác định");

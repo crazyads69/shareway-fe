@@ -37,21 +37,21 @@ import GetReportDetails from "@/api/dashboard/get-report-details";
 
 export default function AdminPage() {
     const [date, setDate] = useState<DateRange | undefined>(undefined);
-    // Loading state for get report details api
+    // Lấy report details API
     const [isLoadReport, setIsLoadReport] = useState(false);
     const dispatch = useDispatch();
 
     const handleDownloadReport = async (date: DateRange | undefined) => {
-        // Validate date range
-        // There is 2 case, both date.from and date.to are null or not null, nor case is invalid
+        // Xác nhận khoảng ngày
+        // Có 2 trường hợp, cả ngày đi và tới đều null hoặc không null, cả 2 trường hợp đều không hợp lẹ
         if ((date?.from && date?.to) || date === undefined) {
             const data: GetReportDetailsInput = {
                 start_date: date?.from ? format(date.from, "yyyy-MM-dd") : undefined,
                 end_date: date?.to ? format(date.to, "yyyy-MM-dd") : undefined,
             };
-            // Call get report details api
+            // Lấy ReportDetails API
             await GetReportDetails(data, dispatch, setIsLoadReport);
-            // Close dialog after download report successfully
+            // Đóng dialog sau khi đã thành công
             const dialog = document.getElementById("report");
             if (dialog) {
                 dialog.click();
@@ -73,8 +73,8 @@ export default function AdminPage() {
         <div className="flex min-h-screen w-full flex-col items-center justify-start">
             <div className="flex w-full flex-row items-center justify-between p-4">
                 <h1 className="p-4 text-2xl font-bold">Tổng quan</h1>
-                {/*Export report button*/}
-                {/* This button when clicked will appear a modal that allows user to select date range and export report */}
+                {/*Nút xuất report*/}
+                {/* Bấm nút này xong cho chọn ngày để xuất nội dung khoảng ngày đó vô báo cáo */}
                 <Dialog>
                     <DialogTrigger asChild>
                         <Button

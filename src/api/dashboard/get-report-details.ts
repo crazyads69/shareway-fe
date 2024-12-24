@@ -21,9 +21,9 @@ export default async function GetReportDetails(
             responseType: "blob", // Quan trọng: Đặt responseType là 'blob' để nhận dữ liệu dưới dạng file
         });
 
-        // Extract filename from Content-Disposition header
+        // Xuất tên file từ Content-Disposition header
         const contentDisposition = response.headers["content-disposition"];
-        let fileName = "report.zip"; // Default filename
+        let fileName = "report.zip"; // Tên file mặc định
 
         if (contentDisposition) {
             const fileNameMatch = contentDisposition.match(/filename="?(.+)"?/i);
@@ -32,7 +32,7 @@ export default async function GetReportDetails(
             }
         }
 
-        // Use file-saver to download the file
+        // Dùng file-saver để tải file
         saveAs(new Blob([response.data]), fileName);
         dispatch(showSuccessMessage("Báo cáo đã được tải xuống thành công."));
     } catch (error) {

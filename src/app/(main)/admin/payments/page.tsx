@@ -571,7 +571,7 @@ export default function PaymentPage() {
                     </Popover>
                     {/* Divider */}
                     {/* Reset filter */}
-                    {/* Only render when filter change different with inital */}
+                    {/* Chỉ render nếu có thay đổi */}
                     {/* Divider */}
                     {(transactionListFilter.start_date !== "" ||
                         transactionListFilter.end_date !== "" ||

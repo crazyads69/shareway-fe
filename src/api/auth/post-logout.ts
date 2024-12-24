@@ -9,13 +9,13 @@ export default async function PostLogout(dispatch: Dispatch<AnyAction>, router: 
     try {
         const resonse = await axiosClient.post("/admin/logout");
         if (resonse.data.success) {
-            // show success message
+            // Hiển thị đăng xuất thành công
             dispatch(showSuccessMessage("Đăng xuất thành công"));
-            // Clear the token from local storage
+            // Xóa token khỏi local storage
             localStorage.removeItem("ACCESS_TOKEN");
-            // Clear the admin data from local storage
+            // Xóa dữ liệu admin khỏi local storage
             localStorage.removeItem("ADMIN");
-            // Replace current route with login page
+            // Quay về trang login
             router.replace("/login");
         } else {
             throw new Error(resonse.data.message_vi || "Lỗi không xác định");

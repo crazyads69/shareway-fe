@@ -307,7 +307,7 @@ export default function RidePage() {
                     </div> */}
                     {/* Divider */}
                     {/* Reset filter */}
-                    {/* Only render when userFilterState change different with inital */}
+                    {/* Chỉ render nếu có thay đổi */}
                     {/* Divider */}
                     {(rideListFilter.search_driver !== "" ||
                         rideListFilter.search_hitcher !== "" ||
