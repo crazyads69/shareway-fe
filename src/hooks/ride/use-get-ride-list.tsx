@@ -74,7 +74,7 @@ export default function useGetRideList() {
                 `/admin/get-ride-list?${query.toString()}`,
             );
 
-            // Check if response is successful
+            // Kiểm tra xem có thành công không
             if (response.data.success) {
                 // Dispatch fetchRideListSuccess action with data
                 dispatch(fetchRideListSuccess(response.data.data));
@@ -96,7 +96,7 @@ export default function useGetRideList() {
         }
     };
 
-    // Call API to get ride list when component mounted
+    // Gọi API để lấy danh sách Ride
     useEffect(() => {
         // Handle whenever have filter change (except page change) then reset page to 1
         if (
@@ -108,13 +108,13 @@ export default function useGetRideList() {
             rideListFilter.end_date_time !== "" ||
             (rideListFilter.ride_status && rideListFilter.ride_status.length > 0)
         ) {
-            // Reset page to 1
+            // Làm mới trang về 1
             getRideList({
                 ...rideListFilter,
                 page: 1,
             });
         } else {
-            // Get ride list with current filter
+            // Lấy RideList bằng filter
             getRideList(rideListFilter);
         }
     }, [

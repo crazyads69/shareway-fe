@@ -6,7 +6,7 @@ const axiosClient = axios.create({
     baseURL: process.env.NEXT_PUBLIC_API_URL,
 });
 
-// Add a request interceptor
+// Thêm request
 axiosClient.interceptors.request.use(
     (config) => {
         const token = localStorage.getItem("ACCESS_TOKEN");
@@ -20,7 +20,7 @@ axiosClient.interceptors.request.use(
     (error) => Promise.reject(error),
 );
 
-// Add a response interceptor
+// Thêm response
 axiosClient.interceptors.response.use(
     (response) => {
         return response;
