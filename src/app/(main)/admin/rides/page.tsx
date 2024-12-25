@@ -46,7 +46,6 @@ export default function RidePage() {
     const debouncedSearchRoute = useDebounce(searchRoute, 500);
     const debouncedSearchVehicle = useDebounce(searchVehicle, 500);
 
-    // Handle search
     useEffect(() => {
         dispatch(
             setRideListFilter({
@@ -82,17 +81,13 @@ export default function RidePage() {
             <h1 className="select-none self-start p-4 text-2xl font-bold">Danh sách chuyến đi</h1>
             <Card className="mt-4 flex h-fit w-fit flex-row items-center self-start bg-white p-1 2xl:p-4">
                 <CardDescription className="flex w-full flex-row items-center space-x-2 2xl:space-x-4">
-                    {/* Filter icon */}
                     <div className="h-12å flex items-center justify-center">
                         <Filter size={32} />
                     </div>
-                    {/* Filter description */}
                     <div className="hidden w-full items-center 2xl:flex">
                         <span className="select-none text-base font-semibold">Bộ lọc</span>
                     </div>
-                    {/* Divider */}
                     <div className="h-12 border border-r" />
-                    {/* Filter button */}
                     <Popover>
                         <PopoverTrigger asChild>
                             <Button

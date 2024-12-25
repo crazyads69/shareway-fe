@@ -106,7 +106,6 @@ export function RideDetailsDialog({ ride }: { ride: RideDetail }) {
                 </DialogHeader>
                 <ScrollArea className="mt-4 max-h-[80vh] pr-4">
                     <div className="space-y-6">
-                        {/* Thông tin chuyến đi */}
                         <div className="space-y-2 rounded-lg bg-slate-100 p-4">
                             <h3 className="mb-3 select-none text-lg font-semibold">
                                 Thông tin chuyến đi
@@ -158,8 +157,6 @@ export function RideDetailsDialog({ ride }: { ride: RideDetail }) {
                         </div>
 
                         <Separator className="bg-slate-200" />
-
-                        {/* Thông tin người cho đi nhờ */}
                         <div>
                             <h3 className="mb-3 select-none text-lg font-semibold">
                                 Thông tin người cho đi nhờ
@@ -169,7 +166,6 @@ export function RideDetailsDialog({ ride }: { ride: RideDetail }) {
 
                         <Separator className="bg-slate-200" />
 
-                        {/* Thông tin người đi nhờ */}
                         <div>
                             <h3 className="mb-3 select-none text-lg font-semibold">
                                 Thông tin người đi nhờ
@@ -179,7 +175,6 @@ export function RideDetailsDialog({ ride }: { ride: RideDetail }) {
 
                         <Separator className="bg-slate-200" />
 
-                        {/* Thông tin phương tiện */}
                         <div className="rounded-lg bg-slate-100 p-4">
                             <h3 className="mb-3 select-none text-lg font-semibold">
                                 Thông tin phương tiện
@@ -205,7 +200,6 @@ export function RideDetailsDialog({ ride }: { ride: RideDetail }) {
 
                         <Separator className="bg-slate-200" />
 
-                        {/* Transaction Information */}
                         <div className="rounded-lg bg-slate-100 p-4">
                             <h3 className="mb-3 select-none text-lg font-semibold">
                                 Thông tin giao dịch
@@ -240,7 +234,6 @@ export function RideDetailsDialog({ ride }: { ride: RideDetail }) {
                             </div>
                         </div>
 
-                        {/* Waypoints */}
                         {ride?.waypoints && ride?.waypoints.length > 0 && (
                             <>
                                 <Separator className="bg-slate-200" />

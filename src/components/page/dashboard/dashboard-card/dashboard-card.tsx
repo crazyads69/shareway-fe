@@ -1,6 +1,6 @@
 /* eslint-disable no-nested-ternary */
 import React from "react";
-import Image from "next/image"; // Assuming you're using Next.js
+import Image from "next/image";
 
 import { Card, CardHeader, CardDescription } from "@/components/ui/card";
 

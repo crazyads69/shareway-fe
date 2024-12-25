@@ -46,7 +46,6 @@ export default function RideDashboard() {
                 getRideDashboard(selectedFilter, date.from, date.to);
             }
         } else {
-            // Reset date when change filter
             setDate(undefined);
             getRideDashboard(selectedFilter, null, null);
         }
@@ -65,7 +64,6 @@ export default function RideDashboard() {
             <CardHeader className="flex items-center justify-between">
                 <div className="flex w-full flex-row items-center justify-between">
                     <h2 className="select-none text-xl font-bold">Số lượng chuyến đi</h2>
-                    {/* DROP DOWN FOR FILTER */}
                     <div className="flex flex-row items-center space-x-4 self-end">
                         <DropdownMenu>
                             <DropdownMenuTrigger className="rounded-lg border p-2 hover:bg-slate-200 hover:outline-none hover:ring-0 focus:outline-none focus:ring-0">
@@ -128,7 +126,7 @@ export default function RideDashboard() {
                                             }}
                                             modifiersStyles={{
                                                 selected: {
-                                                    backgroundColor: "#3b82f6", // bg-blue-500
+                                                    backgroundColor: "#3b82f6",
                                                     color: "white",
                                                 },
                                             }}

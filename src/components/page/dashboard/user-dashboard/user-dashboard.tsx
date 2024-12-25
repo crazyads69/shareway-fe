@@ -46,7 +46,6 @@ export default function UserDashboard() {
                 getUserDashboard(selectedFilter, date.from, date.to);
             }
         } else {
-            // Reset date when change filter
             setDate(undefined);
             getUserDashboard(selectedFilter, null, null);
         }

@@ -64,11 +64,9 @@ export default function PaymentPage() {
         max: transactionListFilter.max_amount?.toLocaleString("vi-VN") || "",
     });
 
-    // Debounce search
     const debouncedSearchSender = useDebounce(searchSender, 500);
     const debouncedSearchReceiver = useDebounce(searchReceiver, 500);
 
-    // Handle debounced search
     useEffect(() => {
         dispatch(
             setTransactionListFilter({
@@ -141,20 +139,15 @@ export default function PaymentPage() {
     return (
         <div className="flex min-h-screen w-full flex-col items-center justify-start">
             <h1 className="select-none self-start p-4 text-2xl font-bold">Danh sách giao dịch</h1>
-            {/* Filter */}
             <Card className="mt-4 flex h-fit w-fit flex-row items-center self-start bg-white p-1 2xl:p-4">
                 <CardDescription className="flex w-full flex-row items-center space-x-2 2xl:space-x-4">
-                    {/* Filter icon */}
                     <div className="flex h-12 w-12 items-center justify-center p-2">
                         <Filter size={32} />
                     </div>
-                    {/* Filter description */}
                     <div className="hidden w-full items-center 2xl:flex">
                         <span className="select-none text-base font-semibold">Bộ lọc</span>
                     </div>
-                    {/* Divider */}
                     <div className="h-12 border border-r" />
-                    {/* Filter button */}
                     <Popover>
                         <PopoverTrigger asChild>
                             <Button
@@ -205,7 +198,6 @@ export default function PaymentPage() {
                                 showOutsideDays={false}
                                 onSelect={setDate}
                             />
-                            {/* Apply button */}
                             <Separator className="bg-slate-300" />
                             <div className="flex flex-row items-center space-x-4 p-4">
                                 <Button
@@ -220,7 +212,6 @@ export default function PaymentPage() {
                                                     end_date: format(date.to, "yyyy-MM-dd"),
                                                 }),
                                             );
-                                            // Close popover
                                             const popoverTrigger = document.getElementById("date");
 
                                             if (popoverTrigger instanceof HTMLElement) {
@@ -231,13 +222,11 @@ export default function PaymentPage() {
                                 >
                                     Áp dụng
                                 </Button>
-                                {/* Reset button */}
                                 <Button
                                     className="bg-red-500 text-base font-semibold text-white"
                                     variant="default"
                                     onClick={() => {
                                         setDate(undefined);
-                                        // Reset filter
                                         dispatch(
                                             setTransactionListFilter({
                                                 ...transactionListFilter,
@@ -245,7 +234,6 @@ export default function PaymentPage() {
                                                 end_date: undefined,
                                             }),
                                         );
-                                        // Close popover
                                         const popoverTrigger = document.getElementById("date");
 
                                         if (popoverTrigger instanceof HTMLElement) {
@@ -495,7 +483,6 @@ export default function PaymentPage() {
                                         onChange={(e) => handleAmountChange("max", e.target.value)}
                                     />
                                 </div>
-                                {/* Apply button */}
                                 <div className="flex flex-row items-center space-x-4">
                                     <Button
                                         className="bg-blue-500 text-base font-semibold text-white"
@@ -525,7 +512,6 @@ export default function PaymentPage() {
                                                             : undefined,
                                                     }),
                                                 );
-                                                // Close popover
                                                 const popoverTrigger =
                                                     document.getElementById("amount");
 
@@ -537,7 +523,6 @@ export default function PaymentPage() {
                                     >
                                         Áp dụng
                                     </Button>
-                                    {/* Reset button */}
                                     <Button
                                         className="bg-red-500 text-base font-semibold text-white"
                                         variant="default"
@@ -546,7 +531,6 @@ export default function PaymentPage() {
                                                 min: "",
                                                 max: "",
                                             });
-                                            // Reset filter
                                             dispatch(
                                                 setTransactionListFilter({
                                                     ...transactionListFilter,
@@ -554,7 +538,6 @@ export default function PaymentPage() {
                                                     max_amount: undefined,
                                                 }),
                                             );
-                                            // Close popover
                                             const popoverTrigger =
                                                 document.getElementById("amount");
 
@@ -594,10 +577,8 @@ export default function PaymentPage() {
                                         min: "",
                                         max: "",
                                     });
-                                    // Reset search
                                     setSearchSender("");
                                     setSearchReceiver("");
-                                    // Reset date
                                     setDate(undefined);
                                 }}
                             >

@@ -101,7 +101,6 @@ export function PaymentDetailsDialog({ transaction }: { transaction: Transaction
                 </DialogHeader>
                 <ScrollArea className="mt-4 max-h-[80vh] pr-4">
                     <div className="space-y-6">
-                        {/* Transaction Information */}
                         <div className="space-y-2 rounded-lg bg-slate-100 p-4">
                             <h3 className="mb-3 select-none text-lg font-semibold">
                                 Thông tin giao dịch
@@ -131,7 +130,6 @@ export function PaymentDetailsDialog({ transaction }: { transaction: Transaction
 
                         <Separator className="bg-slate-200" />
 
-                        {/* tThoongtin người gửi */}
                         <div>
                             <h3 className="mb-3 select-none text-lg font-semibold">
                                 Thông tin người gửi
@@ -140,8 +138,6 @@ export function PaymentDetailsDialog({ transaction }: { transaction: Transaction
                         </div>
 
                         <Separator className="bg-slate-200" />
-
-                        {/* Thông tin người nhận */}
                         <div>
                             <h3 className="mb-3 select-none text-lg font-semibold">
                                 Thông tin người nhận

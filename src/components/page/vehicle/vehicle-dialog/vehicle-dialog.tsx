@@ -91,7 +91,6 @@ export function VehicleDetailsDialog({ vehicle }: { vehicle: VehicleDetail }) {
                 </DialogHeader>
                 <ScrollArea className="mt-4 max-h-[80vh] pr-4">
                     <div className="space-y-6">
-                        {/* Vehicle Information */}
                         <div className="space-y-2 rounded-lg bg-slate-100 p-4">
                             <h3 className="mb-3 select-none text-lg font-semibold">
                                 Thông tin phương tiện
@@ -122,7 +121,6 @@ export function VehicleDetailsDialog({ vehicle }: { vehicle: VehicleDetail }) {
 
                         <Separator className="bg-slate-200" />
 
-                        {/* Owner Information */}
                         <div>
                             <h3 className="mb-3 select-none text-lg font-semibold">
                                 Thông tin chủ sở hữu

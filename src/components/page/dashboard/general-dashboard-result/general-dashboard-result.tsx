@@ -21,9 +21,7 @@ export default function GeneralDashboardResult() {
 
     return (
         <div className="flex w-full flex-col items-center justify-between">
-            {/* Dashboard Cards */}
             <div className="my-4 flex w-full flex-row items-center justify-between">
-                {/* Total User Card */}
                 <DashboardCard
                     change={generalDashboard.user_change}
                     changeType="user"
@@ -53,7 +51,6 @@ export default function GeneralDashboardResult() {
                     value={generalDashboard.total_vehicles}
                 />
             </div>
-            {/* Total User Chart */}
         </div>
     );
 }

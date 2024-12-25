@@ -51,17 +51,14 @@ export default function AdminPage() {
             };
             // Lấy ReportDetails API
             await GetReportDetails(data, dispatch, setIsLoadReport);
-            // Đóng dialog sau khi đã thành công
             const dialog = document.getElementById("report");
             if (dialog) {
                 dialog.click();
             }
             setDate(undefined);
         } else {
-            // Invalid date range
             dispatch(showErrorMessage("Khoảng ngày không hợp lệ"));
             setDate(undefined);
-            // Close dialog
             const dialog = document.getElementById("report");
             if (dialog) {
                 dialog.click();
@@ -104,7 +101,6 @@ export default function AdminPage() {
                                             Hoặc để trống theo mặc định
                                         </span>
                                     </div>
-                                    {/* Date range filter */}
                                     <div className="gap-2">
                                         <Popover>
                                             <PopoverTrigger asChild>
@@ -162,7 +158,6 @@ export default function AdminPage() {
                                             </PopoverContent>
                                         </Popover>
                                     </div>
-                                    {/* Download report button */}
                                     <Button
                                         className="w-full bg-blue-500 text-white hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50"
                                         onClick={() => {

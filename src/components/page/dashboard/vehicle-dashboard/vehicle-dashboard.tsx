@@ -47,7 +47,6 @@ export default function VehicleDashboard() {
                 getVehicleDashboard(selectedFilter, date.from, date.to);
             }
         } else {
-            // Khôi phục ngày khi chuyển filter
             setDate(undefined);
             getVehicleDashboard(selectedFilter, null, null);
         }
@@ -66,7 +65,6 @@ export default function VehicleDashboard() {
             <CardHeader className="flex items-center justify-between">
                 <div className="flex w-full flex-row items-center justify-between">
                     <h2 className="select-none text-xl font-bold">Số lượng phương tiện</h2>
-                    {/* DROP DOWN FOR FILTER */}
                     <div className="flex flex-row items-center space-x-4 self-end">
                         <DropdownMenu>
                             <DropdownMenuTrigger className="rounded-lg border p-2 hover:bg-slate-200 hover:outline-none hover:ring-0 focus:outline-none focus:ring-0">

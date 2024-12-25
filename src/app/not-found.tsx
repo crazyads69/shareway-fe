@@ -13,7 +13,6 @@ export default function NotFound() {
     return (
         <div className="flex h-screen w-full items-center justify-center bg-slate-100 p-4">
             <div className="flex min-h-screen w-full items-center justify-center bg-slate-100 p-4">
-                {/* Logo top left */}
                 <div className="absolute left-8 top-8">
                     <Link href="/admin">
                         <Image alt="Logo" height={200} src="/shareway.svg" width={200} />

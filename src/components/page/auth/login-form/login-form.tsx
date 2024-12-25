@@ -43,7 +43,6 @@ export default function LoginForm() {
 
     return (
         <div className="flex min-h-screen w-full items-center justify-center bg-slate-100 p-4">
-            {/* Logo top left */}
             <div className="absolute left-8 top-8">
                 <Image alt="Logo" height={200} src="/shareway.svg" width={200} draggable={false} />
             </div>
@@ -125,7 +124,6 @@ export default function LoginForm() {
                 </CardContent>
             </Card>
 
-            {/* Footer */}
             <div className="absolute bottom-8 left-8">
                 <span className="select-none text-sm text-gray-500">© 2024 ShareWay</span>
             </div>

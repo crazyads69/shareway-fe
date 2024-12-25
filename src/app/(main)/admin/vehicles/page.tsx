@@ -29,7 +29,6 @@ export default function VehiclePage() {
     const vehicleListFilter = useSelector((state: RootState) => state.vehicle.vehicleListFilter);
     const [date, setDate] = useState<DateRange | undefined>(undefined);
 
-    // Define state for search
     const [searchVehicleName, setSearchVehicleName] = useState<string>(
         vehicleListFilter.search_vehicle_name as string,
     );
@@ -43,13 +42,11 @@ export default function VehiclePage() {
         vehicleListFilter.search_cavet as string,
     );
 
-    // Debounce search
     const debouncedSearchVehicleName = useDebounce(searchVehicleName, 500);
     const debouncedSearchPlate = useDebounce(searchPlate, 500);
     const debouncedSearchOwner = useDebounce(searchOwner, 500);
     const debouncedSearchCavet = useDebounce(searchCavet, 500);
 
-    // Handle debounced search
     useEffect(() => {
         dispatch(
             setVehicleListFilter({
@@ -85,20 +82,15 @@ export default function VehiclePage() {
     return (
         <div className="flex min-h-screen w-full flex-col items-center justify-start">
             <h1 className="select-none self-start p-4 text-2xl font-bold">Danh sách phương tiện</h1>
-            {/* Filter */}
             <Card className="mt-4 flex h-fit w-fit flex-row items-center self-start bg-white p-1 2xl:p-4">
                 <CardDescription className="flex w-full flex-row items-center space-x-2 2xl:space-x-4">
-                    {/* Filter icon */}
                     <div className="flex h-12 w-12 items-center justify-center">
                         <Filter size={32} />
                     </div>
-                    {/* Filter description */}
                     <div className="hidden w-full items-center 2xl:flex">
                         <span className="select-none text-base font-semibold">Bộ lọc</span>
                     </div>
-                    {/* Divider */}
                     <div className="h-12 border border-r" />
-                    {/* Filter button */}
                     <Popover>
                         <PopoverTrigger asChild>
                             <Button
@@ -149,7 +141,6 @@ export default function VehiclePage() {
                                 showOutsideDays={false}
                                 onSelect={setDate}
                             />
-                            {/* Apply button */}
                             <Separator className="bg-slate-300" />
                             <div className="flex flex-row items-center space-x-4 p-4">
                                 <Button
@@ -164,7 +155,6 @@ export default function VehiclePage() {
                                                     end_date: format(date.to, "yyyy-MM-dd"),
                                                 }),
                                             );
-                                            // Close popover
                                             const popoverTrigger = document.getElementById("date");
 
                                             if (popoverTrigger instanceof HTMLElement) {
@@ -175,13 +165,11 @@ export default function VehiclePage() {
                                 >
                                     Áp dụng
                                 </Button>
-                                {/* Reset button */}
                                 <Button
                                     className="bg-red-500 text-base font-semibold text-white"
                                     variant="default"
                                     onClick={() => {
                                         setDate(undefined);
-                                        // Reset filter
                                         dispatch(
                                             setVehicleListFilter({
                                                 ...vehicleListFilter,
@@ -189,7 +177,6 @@ export default function VehiclePage() {
                                                 end_date: undefined,
                                             }),
                                         );
-                                        // Close popover
                                         const popoverTrigger = document.getElementById("date");
 
                                         if (popoverTrigger instanceof HTMLElement) {
