@@ -14,7 +14,7 @@ export default function useGetGeneralDashboard() {
     const getGeneralDashboard = async () => {
         try {
             setIsLoadingGeneralDashboard(true);
-            // Call API
+            
             const response = await axiosClient.get<GeneralDashboardResponse>(
                 "/admin/get-dashboard-general-data",
             );

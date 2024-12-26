@@ -21,7 +21,7 @@ export default function useGetVehicleDashboard() {
     ) => {
         try {
             setIsLoadingVehicleDashboard(true);
-            // Build query params
+
             const queryParams = new URLSearchParams();
 
             queryParams.append("filter", filter);
@@ -41,7 +41,7 @@ export default function useGetVehicleDashboard() {
                 queryParams.append("end_date", endDateString);
             }
 
-            // Call API
+
             const response = await axiosClient.get<VehicleDashboardResponse>(
                 `/admin/get-vehicle-dashboard-data?${queryParams.toString()}`,
             );

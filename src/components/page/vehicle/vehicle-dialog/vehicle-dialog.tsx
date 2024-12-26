@@ -130,7 +130,6 @@ export function VehicleDetailsDialog({ vehicle }: { vehicle: VehicleDetail }) {
 
                         <Separator className="bg-slate-200" />
 
-                        {/* Timestamps */}
                         <div className="rounded-lg bg-slate-100 p-4">
                             <h3 className="mb-3 select-none text-lg font-semibold">
                                 Thông tin thời gian

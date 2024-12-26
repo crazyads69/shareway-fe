@@ -38,7 +38,6 @@ export default function useGetRideDashboard() {
                 queryParams.append("end_date", endDateString);
             }
 
-            // Call API
             const response = await axiosClient.get<RideDashboardResponse>(
                 `/admin/get-ride-dashboard-data?${queryParams.toString()}`,
             );

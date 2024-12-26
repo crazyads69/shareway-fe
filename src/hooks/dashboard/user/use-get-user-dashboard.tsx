@@ -18,7 +18,6 @@ export default function useGetUserDashboard() {
     ) => {
         try {
             setIsLoadingUserDashboard(true);
-            // Build query params
             const queryParams = new URLSearchParams();
 
             queryParams.append("filter", filter);
@@ -35,7 +34,6 @@ export default function useGetUserDashboard() {
                 queryParams.append("end_date", endDateString);
             }
 
-            // Call API
             const response = await axiosClient.get<UserDashboardResponse>(
                 `/admin/get-user-dashboard-data?${queryParams.toString()}`,
             );

@@ -24,9 +24,7 @@ export default function useGetTransactionList() {
 
     const getTransactionList = async (transactionListFilter: TransactionListFilter) => {
         try {
-            // Start loading state
             dispatch(fetchTransactionList());
-            // Build query string from filter
             const query = new URLSearchParams();
 
             if (transactionListFilter.page) {

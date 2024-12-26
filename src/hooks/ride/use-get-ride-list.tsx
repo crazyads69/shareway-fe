@@ -20,12 +20,9 @@ export default function useGetRideList() {
 
     const getRideList = async (rideListFilter: RideListFilter) => {
         try {
-            // Start loading state
             dispatch(fetchRideList());
-            // Xây dựng query từ filter
             const query = new URLSearchParams();
 
-            // Thêm trnag và limit cho query
             if (rideListFilter.page) {
                 query.append("page", rideListFilter.page.toString());
             }
@@ -65,7 +62,6 @@ export default function useGetRideList() {
 
             // Thêm trạng thái chuyến đi
             if (rideListFilter.ride_status && rideListFilter.ride_status.length > 0) {
-                // Ride status is an array, so we need to join it to a string before adding to query
                 query.append("ride_status", rideListFilter.ride_status.join(","));
             }
 
@@ -76,7 +72,6 @@ export default function useGetRideList() {
 
             // Kiểm tra xem có thành công không
             if (response.data.success) {
-                // Dispatch fetchRideListSuccess action with data
                 dispatch(fetchRideListSuccess(response.data.data));
             } else {
                 throw new Error(response.data.message_vi || "Lỗi không xác định");

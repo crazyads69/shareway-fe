@@ -22,7 +22,6 @@ export default function useGetTransactionDashboard() {
     ) => {
         try {
             setIsLoadingTransactionDashboard(true);
-            // Xây dựng query param
             const queryParams = new URLSearchParams();
 
             queryParams.append("filter", filter);
@@ -39,7 +38,6 @@ export default function useGetTransactionDashboard() {
                 queryParams.append("end_date", endDateString);
             }
 
-            // Call API
             const response = await axiosClient.get<TransactionDashboardResponse>(
                 `/admin/get-transaction-dashboard-data?${queryParams.toString()}`,
             );
